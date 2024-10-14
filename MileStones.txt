@@ -1,0 +1,3 @@
+* Templates file 
+* Database Connection and population
+* views.py
