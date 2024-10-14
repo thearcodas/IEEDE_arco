@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Citizen Login || IEEDE</title>
+    <link rel="stylesheet" href="assets/css/citizen_login.css" />
+    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+  </head>
+  <body>
+    <section class="sec1">
+      <div class="login">
+        <div class="cover-pic">
+          <img src="assets/img/IEEDE_logo_blue.png" alt="login-cover" />
+        </div>
+        <div class="login-form-body">
+          <h3>Citizen Login</h3>
+          <p id="log-txt">
+            After clicking "Send OTP," a one-time password will be sent to your
+            registered mobile number for verification.
+          </p>
+          <form class="login-form" id="logform">
+            <div class="input-box" id="mecform">
+              <label for="mec">Enter MEC ID</label>
+              <input class="input" type="number" name="mec" id="mec" />
+              <span for="mec" id="mecerror">Invalid MEC ID</span>
+            </div>
+            <input class="btn" id="otp-btn" type="submit" value="Send OTP" />
+          </form>
+           <form class="login-form" id="logotpform">
+            <div class="input-box otp" id="otpfrom">
+              <label for="otp">Enter OTP</label>
+              <input class="input" type="password" name="otp" id="otp" />
+              <label for="otp" id="otperror">Invalid OTP</label>
+            </div>
+            <input class="btn" id="otp-verify-btn" type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+
+    <script src="assets/js/login.js"></script>
+  </body>
+</html>

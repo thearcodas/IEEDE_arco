@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forget Password || IEEDE</title>
+    <link rel="stylesheet" href="assets/css/forgot-pass.css">
+    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <section class="sec1">
+        <div class="body">
+            <h3>Forgot Password ?</h3>
+            <p id="for-txt">Please provide your registered phone number to receive an OTP for verification. It will arrive via SMS shortly.</p>
+             <form class="login-form" id="mobform">
+            <div class="input-box" id="mecform">
+              <label for="ph">Enter registered phone number</label>
+              <input class="input" type="number" name="ph" id="ph" />
+              <span id="pherror">Phone number not found</span>
+            </div>
+            <input class="btn" id="otp-btn" type="submit" value="Send OTP" />
+          </form>
+          <form class="login-form" id="otpforform">
+            <div class="input-box" id="mecform">
+              <label for="fotp">Enter OTP</label>
+              <input class="input" type="number" name="fotp" id="fotp" />
+              <span id="fotperror">Invalid OTP</span>
+            </div>
+            <input class="btn" id="otp-btn" type="submit" value="Verify OTP" />
+          </form>
+          <form class="login-form" id="pswform">
+            <div class="input-box" id="mecform">
+              <label for="fotp">Enter New Password</label>
+              <input class="input" type="password" name="npsw" id="npsw" />
+              <span id="npswerror">Password cannot be less than 6 letters</span>
+            </div>
+              <div class="input-box" id="mecform">
+              <label for="fotp">Confirm Password</label>
+              <input class="input" type="password" name="cpsw" id="cpsw" />
+              <span id="cpswerror">Password doesn't match</span>
+            </div>
+            <input class="btn" id="otp-btn" type="submit" value="Confirm" />
+          </form>
+        </div>
+    </section>
+
+    <script src="assets/js/login.js"></script>
+</body>
+</html>
