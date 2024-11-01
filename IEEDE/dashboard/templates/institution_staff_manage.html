@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staffs || IEEDE</title>
+    <link rel="stylesheet" href="assets/css/citizen_landing.css" />
+    <link
+      rel="stylesheet"
+      href="assets/icons/fontawesome-free-6.6.0-web/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/icons/line-awesome/css/line-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+  </head>
+  <body class="bg-primary-subtle">
+    <section
+      class="sidebar bg-danger"
+      id="sidebar"
+      style="background-color: #800000 !important"
+    >
+      <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
+      <img
+        src="assets/img/IEEDE_logo_maroon.png"
+        alt="logo"
+        id="logo"
+        style="border-bottom: 3px solid #ff0000 !important"
+      />
+      <a
+        href="institution_landing.html"
+        class="side-a side-a-top"
+        title="Dashboard"
+        ><i class="fa-solid fa-gauge"></i
+        ><span class="aspan">&nbsp;Dashboard</span></a
+      >
+      <a href="citizen_personal_profile.html" class="side-a" title="Staffs"
+        ><i class="fa-solid fa-user-tie"></i
+        ><span class="aspan">&nbsp;Staffs</span></a
+      >
+      <a
+        href="institution_student_manage.html"
+        class="side-a"
+        title="Students"
+        ><i class="fa-solid fa-user-graduate"></i
+        ><span class="aspan">&nbsp;Students</span></a
+      >
+       <a href="institution_course_manage.html" class="side-a" title="Department & Courses"
+        ><i class="fa-solid fa-building-user"></i>
+        <span class="aspan">Departments&nbsp;& Courses</span></a
+      >
+     <a href="institution_student_manage.html" class="side-a" title="Results"
+        ><i class="fa-regular fa-note-sticky"></i>
+        <span class="aspan">Results</span></a
+      >
+      <a
+        href="#"
+        class="side-a position-absolute side-a-log"
+        title="Log Out"
+        style="bottom: 20px; width: 85%"
+        ><i class="fa-solid fa-right-from-bracket"></i
+        ><span class="aspan">&nbsp;Log&nbsp;Out</span></a
+      >
+    </section>
+    <section class="main-body">
+      <nav id="navbar" class="bg-danger">
+        <i class="las la-bars" id="barswitch"></i>
+        <form id="searchform">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search...."
+          />
+          <button type="submit" class="ins-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+         <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
+      </nav>
+      <div class="body-main">
+        <div class="profile-body align-items-center flex-column">
+          <div class="pbr pbrii shadow-sm bg-white" style="width: 96%">
+            <div class="d-flex gap-2 mb-4">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#addModal"
+              >
+                Add Staff&nbsp;<i class="las la-plus"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#importModal"
+              >
+                Import Staff&nbsp;<i class="las la-plus"></i>
+              </button>
+            </div>
+
+            <h2 class="mb-4">
+              <i class="fa-solid fa-user-tie"></i>&nbsp;&nbsp;&nbsp;All Staffs
+              Info
+            </h2>
+            <table id="myTable">
+              <thead>
+                <tr>
+                  <th>SL</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>Designation</th>
+                  <th>Area of Interest</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Abhishek Roy</td>
+                  <td>9999999999</td>
+                  <td>abhishekroy@gmail.com</td>
+                  <td>Computer Science</td>
+                  <td>Assistant Professor</td>
+                  <td>Cloud Computing</td>
+                  <td>
+                    <button
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editModal"
+                      class="btn btn-primary"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i></button
+                    >&nbsp;<button class="btn btn-danger">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- Modal -->
+            <div
+              class="modal fade"
+              id="importModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                     Import Staff
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="login-form" id="logform">
+                      <div class="input-box" id="permanent-address-box">
+                        <label for="permanent-address">Import CSV file only</label>
+                        <input
+                          class="input form-control"
+                          type="file"
+                          accept=".csv"
+                          name="importcsv"
+                          id="importcsv"
+                          required
+                        />
+                      </div>
+
+                      <input
+                        class="btn btn-primary mt-4"
+                        id="otp-btn"
+                        type="submit"
+                        value="Submit"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+  <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Staff</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="login-form" id="logform">
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Name</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="addname"
+                  id="addname"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Phone</label>
+                <input
+                  class="input"
+                  type="tel"
+                  name="addphone"
+                  id="addphone"
+                  pattern="[0-9]{10}"
+                  title="Please enter a valid 10-digit phone number."
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Email</label>
+                <input
+                  class="input"
+                  type="email"
+                  name="addemail"
+                  id="addemail"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Department</label>
+                <select name="dept" id="dept" class="input">
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Computer Science">Business And Economics</option>
+                  <option value="Computer Science">Applied Science</option>
+                  <option value="Computer Science">Commerce</option>
+                </select>
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Designation</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="adddesig"
+                  id="adddesig"
+                  required
+                />
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Area of Interest</label>
+                <textarea name="addaoi" id="addaoi" class="input" rows="3" style="height: 100px;" required></textarea>
+              </div>
+              <input
+                class="btn btn-primary mt-4"
+                id="otp-btn"
+                type="submit"
+                value="Submit"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Staff</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="login-form" id="logform">
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Edit Name</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="staffname"
+                  id="staffname"
+                  value="Abhisek Roy"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Edit Phone</label>
+                <input
+                  class="input"
+                  type="tel"
+                  name="staffphone"
+                  id="staffphone"
+                  pattern="[0-9]{10}"
+                  title="Please enter a valid 10-digit phone number."
+                  value="9999999999"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Edit Email</label>
+                <input
+                  class="input"
+                  type="email"
+                  name="staffemail"
+                  id="staffemail"
+                  value="abhishekroy@gmail.com"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Edit Department</label>
+                <select name="dept" id="dept" class="input">
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Computer Science">Business And Economics</option>
+                  <option value="Computer Science">Applied Science</option>
+                  <option value="Computer Science">Commerce</option>
+                </select>
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Edit Designation</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="staffdesig"
+                  id="staffdesig"
+                  value="Assistant Professor"
+                  required
+                />
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Edit Area of Interest</label>
+                <textarea name="aoi" id="aoi" class="input" rows="3" style="height: 100px;" required>Cloud Computing</textarea>
+              </div>
+              <input
+                class="btn btn-primary mt-4"
+                id="otp-btn"
+                type="submit"
+                value="Submit"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="searchModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Search</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+             <form id="searchform" class="searchform-modal">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search...."
+          />
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/icons/fontawesome-free-6.6.0-web/js/all.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myTable").DataTable();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+@font-face {
+    font-family: SUSE-Medium;
+    src: url(../fonts/SUSE-Medium.ttf);
+}
+
+@font-face {
+    font-family: SUSE-light;
+    src: url(../fonts/SUSE-Light.ttf);
+}
+
+@font-face {
+    font-family: SUSE-Bold;
+    src: url(../fonts/SUSE-Bold.ttf);
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+header{
+    width: 100%;
+    background: #13334d;
+    position: fixed;
+    z-index: 999;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+header img{
+    height: 4rem;
+}
+.search-box{
+    width: 60%;
+    height: 9vh;
+    background: white;
+}
+header a{
+    cursor: pointer;
+    transition: 0.3s;
+}
+header a:hover{
+    color: #2874a6!important;
+}
+.search-box form .input input{
+    height: 9vh;
+    outline: none;
+    border: none;
+    width: 90%;
+}
+.search-box form .input {
+    height: 9vh;
+    outline: none;
+    border: none;
+    font-family: SUSE-light;
+    width: 42.5%;
+}
+.de{
+    width: 0.1%;
+    height: 5vh;
+    background-color: #2874a6;
+}
+.search-box form button{
+    height: 9vh;
+    width: 15%;
+    border: none;
+}
+.main{ width: 100%; padding-top: 10rem;}
+.main .input-group {
+    width: 30%;
+}
+.main .card{
+    margin-left: 20%;
+    width: 60%;
+}
+.main .option{
+    width: 60%;
+    margin-left: 20%;
+}
+.main .card .card-title{
+    font-family: SUSE-Bold;
+}
+.main .card .card-subtitle {
+    font-family: SUSE-Medium;
+    font-size: 15px;
+}
+.main .card .card-body .job-info{
+    width: 100%;
+    font-family: SUSE-light;
+}
+.main .card .card-body .card-text{
+    font-family: SUSE-Medium;
+}
+
+@media screen and (max-width: 480px) {
+    header{
+        flex-direction: column;
+        margin-bottom: 20px;
+        padding: 0px 10px!important;
+        position: relative;
+        width: 100vw;
+    }
+    .search-box{
+        width: 100%;
+        height: auto!important;
+        padding:0px 15px;
+        padding-bottom: 15px;
+    }
+   .search-box form{
+    flex-direction: column!important;
+   }
+   .search-box form .input {
+       width: 100%;
+   }
+   .de {
+       width: 100%;
+       height: 2px;
+   }
+   .search-box form button {
+       width: 100%;
+   }
+   header a {
+       margin-top: 20px;
+   }
+   .main {
+       padding-top: 1rem;
+   }
+   .main .option {
+       width: 90%;
+       margin-left: 5%;
+       flex-direction: column;
+   }
+   .main .option .input-group {
+       width: 100%;
+   }
+   .main .card {
+       margin-left: 5%;
+       width: 90%;
+   }
+   .main .card .card-body .job-info {
+       flex-direction: column;
+       align-items: flex-start!important;
+       font-size: 12px;
+       gap: 0px!important;
+   }
+   .main .card .card-body .job-info p{
+       border: none!important;
+       margin-bottom: 2px!important;
+   }
+   .main .card .card-body h6 {
+       margin-top: 10px !important;
+   }
+   .main .card .card-body div button {
+       font-size: 12px !important;
+   }
+   .main .card .img-fluid {
+        max-width: 42%!important;
+   }
+   .main .card .col-md-4 {
+        display: flex;
+       justify-content: center;
+       padding: 1rem!important;
+   }
+   .modal .card .card-body .job-info {
+    flex-direction: column;
+    align-items: flex-start !important;
+    font-size: 12px;
+    gap: 0px !important;
+
+   }
+   .modal .card .card-body .job-info p {
+       border: none !important;
+       margin-bottom: 2px !important;
+   }
+   .modal .card .card-body h6 {
+       margin-top: 10px !important;
+   }
+   .modal .table{
+    min-width: 200%;
+   }
+}

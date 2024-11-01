@@ -27,6 +27,9 @@ body{
     align-items: center;
     transition: 0.4s;
 }
+#close-bar{
+    display: none;
+}
 .sidebar-collapse{
     width: 6vw;
     height: 100vh;
@@ -46,6 +49,11 @@ body{
     transition: 0.4s;
     float: right;
     justify-content: center!important;
+}
+.mobile-side-expand{
+    width: 100vw!important;
+    margin-left: 0!important;
+
 }
 .side-left{
     width:40%;
@@ -96,6 +104,9 @@ body{
     padding:0px 10px;
     font-family: SUSE-light;
 }
+.mobi-search{
+    display: none;
+}
 #searchform button{
     width: 20%;
     border-radius: 0px 7px 7px 0px;
@@ -131,8 +142,14 @@ body{
     width: 85%;
     border-radius: 17px;
     &:hover{
-        background-color: #2874a6;
+        background-color: #4e4e4e57;
     }
+}
+#myTable{
+    font-size: 12px;
+}
+#myTable tbody tr td button{
+    font-size: 12px;
 }
 .a-span{
     display: none;
@@ -180,6 +197,14 @@ body{
     width: 250px;
     border-radius: 12px;
 }
+.institution-logo{
+    background: top;
+    padding: 0;
+}
+.institution-logo img{
+    height: 150px;
+    width: 150px;
+}
 .c-r-body{
     width: 80%;
     height: auto;
@@ -201,6 +226,23 @@ body{
 .c-r-body .table tr th {
     font-size: 16px;
     font-family: SUSE-Medium;
+}
+.cc{
+    width: 80%;
+    height: 130px;
+    background-color: #800000;
+    border-radius: 17px;
+    text-decoration: none;
+    color: white;
+    font-family: SUSE-Medium;
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    gap:20px;
+}
+.cc h3{
+    margin-bottom: 0;
+    font-size: 50px;
 }
 .profile-body{
     width: 100%;
@@ -291,4 +333,68 @@ body{
 .input-box .input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+@media screen and (max-width: 480px) {
+    .body-main {
+            flex-direction: column;
+        }
+    .sidebar{
+        overflow-x: hidden;
+        z-index: 999;
+        margin-left: -20vw;
+        }
+        #close-bar{
+            display: block;
+        }
+        .main-body{
+            margin-left: 0;
+            width: 100vw;
+        }
+        .mobi-search{
+            display: block;
+        }
+                #searchform {
+                    width: 100%;
+                    height: 9vh;
+                    display: none;
+                    position: unset;
+                    border: 1px solid #2e4053;
+                    border-radius: 7px;
+                }
+                .searchform-modal{
+                    display: flex!important;
+                }
+                .c-right, .c-left{
+                    gap: 30px!important;
+                    width: 100%!important;
+                }
+                .c-r-body{
+                    width: 100% !important;
+                }
+                .pbredu{
+                    width: 95vw;
+                    overflow-x: scroll;
+                }
+                .pbpp{
+                    flex-direction: column;
+                }
+                .pbpp .pbl{
+                    width: 90vw;
+                }
+                                .pbpp .pbr {
+                                    width: 90vw;
+                                }
+                .app-table{
+                    width: 200%!important;
+                }
+                .cc{
+                    width: 100%;
+                }
+                .pbrii{
+                    overflow-x: scroll;
+                }
+                .side-a-log{
+                    position: relative!important;
+                    bottom: -20px!important;
+                }
 }

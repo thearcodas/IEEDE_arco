@@ -18,6 +18,7 @@
   </head>
   <body>
     <section class="sidebar" id="sidebar">
+      <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
       <img src="assets/img/IEEDE_logo_blue.png" alt="logo" id="logo" />
       <a href="citizen_landing.html" class="side-a side-a-top" title="Dashboard"
         ><i class="fa-solid fa-gauge"></i
@@ -54,9 +55,10 @@
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
+         <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
       </nav>
       <div class="body-main">
-        <div class="profile-body align-items-center flex-column">
+        <div class="profile-body pbpp align-items-center flex-column">
           <div class="pbr shadow-sm bg-white">
               <button
               type="button"
@@ -143,6 +145,7 @@
                           type="text"
                           name="certificate-title"
                           id="certificate-title"
+                          required
                         />
                       </div>
                       <div class="input-box" id="permanent-address-box">
@@ -153,6 +156,7 @@
                           accept="application/pdf"
                           name="certificate"
                           id="certificate"
+                          required
                         />
                       </div>
 
@@ -198,6 +202,7 @@
                           type="text"
                           name="skill"
                           id="skill"
+                          required
                         />
                       </div>
                       <input
@@ -211,6 +216,36 @@
                 </div>
               </div>
             </div>
+
+<div class="modal fade" id="searchModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Search</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+             <form id="searchform" class="searchform-modal">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search...."
+          />
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+            
 
     <script src="assets/icons/fontawesome-free-6.6.0-web/js/all.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>

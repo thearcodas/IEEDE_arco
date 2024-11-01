@@ -17,42 +17,37 @@
     <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
   </head>
   <body class="bg-primary-subtle">
-    <section class="sidebar bg-danger" id="sidebar" style="background-color: #800000!important;">
+    <section class="sidebar bg-danger" id="sidebar" style="background-color: #00bf63!important;">
        <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
-      <img src="assets/img/IEEDE_logo_maroon.png" alt="logo" id="logo" style="border-bottom: 3px solid #ff0000!important;" />
+      <img src="assets/img/IEEDE_logo_green.png" alt="logo" id="logo" style="border-bottom: 3px solid #198754!important;" />
       <a href="#" class="side-a side-a-top" title="Dashboard"
         ><i class="fa-solid fa-gauge"></i
         ><span class="aspan">&nbsp;Dashboard</span></a
       >
       <a
-        href="institution_staff_manage.html"
+        href="employer_employee_manage.html"
         class="side-a"
-        title="Personal Profile"
+        title="Employees"
         ><i class="fa-solid fa-user-tie"></i
-        ><span class="aspan">&nbsp;Staffs</span></a
+        ><span class="aspan">&nbsp;Employees</span></a
       >
       <a
-        href="institution_student_manage.html"
+        href="employer_applications_manage.html"
         class="side-a"
-        title="Students"
-        ><i class="fa-solid fa-user-graduate"></i
-        ><span class="aspan">&nbsp;Students</span></a
+        title="Applications"
+        ><i class="fa-solid fa-newspaper"></i><span class="aspan">&nbsp;Applications</span></a
       >
-      <a href="institution_course_manage.html" class="side-a" title="Department & Courses"
-        ><i class="fa-solid fa-building-user"></i>
-        <span class="aspan">Departments&nbsp;& Courses</span></a
+        <a href="employer_vacany_manage.html" class="side-a" title="Jobs"
+        ><i class="fa-solid fa-user-plus"></i>
+        <span class="aspan">Vacancies</span></a
       >
-      <a href="institution_result_manage.html" class="side-a" title="Results"
-        ><i class="fa-regular fa-note-sticky"></i>
-        <span class="aspan">Results</span></a
-      >
-      <a href="#" class="side-a side-a-log position-absolute" title="Log Out" style="bottom: 20px;width: 85%;"
+      <a href="#" class="side-a position-absolute" title="Log Out" style="bottom: 20px;width: 85%;"
         ><i class="fa-solid fa-right-from-bracket"></i
         ><span class="aspan">&nbsp;Log&nbsp;Out</span></a
       >
     </section>
     <section class="main-body">
-      <nav id="navbar" class="bg-danger">
+      <nav id="navbar" class="bg-success">
         <i class="las la-bars" id="barswitch"></i>
         <form id="searchform">
           <input
@@ -65,28 +60,24 @@
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
-        <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
+         <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
       </nav>
       <div class="body-main">
         <div class="card c-left gap-3 bg-transparent">
           <div class="profile-photo institution-logo">
             <img src="assets/img/institution_logo.png" alt="people" />
           </div>
-          <h2>ABCD University</h2>
+          <h2>ABCD Company</h2>
           <small class="fs-6 text-center">ABCDpur, ABCD Nagar, <br>ABCD Dist, ABCD State <br> India, 700001</small>
         </div>
         <div class="card c-right border-start bg-transparent">
           <div class="c-r-body">
-            <a href="institution_student_manage.html" class="cc btn btn-danger">
-              <small>Total Students</small>
+            <a href="employer_employee_manage.html" class="cc btn btn-success">
+              <small>Total Employees</small>
               <h3>30</h3>
             </a>
-            <a href="institution_staff_manage.html" class="cc btn btn-danger">
-               <small>Total Staffs</small>
-                <h3>30</h3>
-            </a>
-            <a href="institution_course_manage.html" class="cc btn btn-danger">
-               <small>Total Courses</small>
+            <a href="employer_applications_manage.html" class="cc btn btn-success">
+               <small>Total Applications</small>
                 <h3>30</h3>
             </a>
           </div>
@@ -94,7 +85,7 @@
       </div>
     </section>
 
-
+    
     <div class="modal fade" id="searchModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">

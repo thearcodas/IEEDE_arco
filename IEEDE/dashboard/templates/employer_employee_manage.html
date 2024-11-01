@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manage Employees || IEEDE</title>
+    <link rel="stylesheet" href="assets/css/citizen_landing.css" />
+    <link
+      rel="stylesheet"
+      href="assets/icons/fontawesome-free-6.6.0-web/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/icons/line-awesome/css/line-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
+  </head>
+  <body class="bg-primary-subtle">
+      <section class="sidebar bg-danger" id="sidebar" style="background-color: #00bf63!important;">
+         <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
+      <img src="assets/img/IEEDE_logo_green.png" alt="logo" id="logo" style="border-bottom: 3px solid #198754!important;" />
+      <a href="employer_landing.html" class="side-a side-a-top" title="Dashboard"
+        ><i class="fa-solid fa-gauge"></i
+        ><span class="aspan">&nbsp;Dashboard</span></a
+      >
+      <a
+        href="employer_employee_manage.html"
+        class="side-a"
+        title="Employees"
+        ><i class="fa-solid fa-user-tie"></i
+        ><span class="aspan">&nbsp;Employees</span></a
+      >
+      <a
+        href="employer_applications_manage.html"
+        class="side-a"
+        title="Applications"
+        ><i class="fa-solid fa-newspaper"></i><span class="aspan">&nbsp;Applications</span></a
+      >
+        <a href="employer_vacany_manage.html" class="side-a" title="Jobs"
+        ><i class="fa-solid fa-user-plus"></i>
+        <span class="aspan">Vacancies</span></a
+      >
+      <a href="#" class="side-a position-absolute" title="Log Out" style="bottom: 20px;width: 85%;"
+        ><i class="fa-solid fa-right-from-bracket"></i
+        ><span class="aspan">&nbsp;Log&nbsp;Out</span></a
+      >
+    </section>
+    <section class="main-body">
+      <nav id="navbar" class="bg-success">
+        <i class="las la-bars" id="barswitch"></i>
+        <form id="searchform">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search...."
+          />
+          <button type="submit" class="ins-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+           <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
+      </nav>
+      <div class="body-main">
+        <div class="profile-body align-items-center flex-column">
+          <div class="pbr shadow-sm bg-white" style="width: 96%;">
+            <div class="d-flex gap-2 mb-4">
+              <button
+                type="button"
+                class="btn btn-primary emp-"
+                data-bs-toggle="modal"
+                data-bs-target="#addModal"
+              >
+                Add Employee&nbsp;<i class="las la-plus"></i>
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary "
+                data-bs-toggle="modal"
+                data-bs-target="#importModal"
+              >
+                Import Employee&nbsp;<i class="las la-plus"></i>
+              </button>
+            </div>
+
+            <h2 class="mb-4">
+              <i class="fa-solid fa-user-tie"></i>&nbsp;&nbsp;&nbsp;All Employees
+              Info
+            </h2>
+            <div class="pb-2" style="width: 100%;overflow-x: scroll;">
+                <table id="myTable" style="width: 130%;">
+              <thead>
+                <tr>
+                  <th>SL</th>
+                  <th>MEC ID</th>
+                  <th>Employee ID</th>
+                  <th>Name</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Job</th>
+                  <th>Department</th>
+                  <th>CV</th>
+                  <th>Date Of Join</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>7238472847</td>
+                  <td>EMP123</td>
+                  <td>Ayan Mishra</td>
+                  <td>9999999999</td>
+                  <td>ayanmisra2003@gmail.com</td>
+                  <td>Software Developer</td>
+                  <td>IT</td>
+                  <td><button class="btn btn-info text-white"><i class="las la-eye"></i></button></td>
+                  <td>19/02/2024</td>
+                  <td>
+                    <button
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#editModal"
+                      class="btn btn-primary"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i></button
+                    >&nbsp;<button class="btn btn-danger">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- Modal -->
+            <div
+              class="modal fade"
+              id="importModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                     Import Employees
+                    </h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="login-form" id="logform">
+                      <div class="input-box" id="permanent-address-box">
+                        <label for="permanent-address">Import CSV file only</label>
+                        <input
+                          class="input form-control"
+                          type="file"
+                          accept=".csv"
+                          name="importcsvemp"
+                          id="importcsvemp"
+                          required
+                        />
+                      </div>
+
+                      <input
+                        class="btn btn-primary mt-4"
+                        id="otp-btn"
+                        type="submit"
+                        value="Submit"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+  <!-- Modal -->
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Employee</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="login-form" id="logform">
+                <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">MEC ID</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="addmecid"
+                  id="addmecid"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Employee ID</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="addempid"
+                  id="addempid"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Name</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="addnamename"
+                  id="addnamename"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Phone</label>
+                <input
+                  class="input"
+                  type="tel"
+                  name="addphoneemp"
+                  id="addphoneemp"
+                  pattern="[0-9]{10}"
+                  title="Please enter a valid 10-digit phone number."
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Email</label>
+                <input
+                  class="input"
+                  type="email"
+                  name="addemailemp"
+                  id="addemailemp"
+                  required
+                />
+              </div>
+                <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Department</label>
+                <select name="dept" id="dept" class="input">
+                  <option value="IT">IT</option>
+                  <option value="HR">HR</option>
+                </select>
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Job</label>
+                <select name="job" id="job" class="input">
+                  <option value="Software Developer">Software Developer</option>
+                  <option value="HR">HR</option>
+                </select>
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">CV (pdf file only)</label>
+                <input
+                  class="input form-control"
+                  type="file"
+                  accept=".pdf"
+                  name="cv"
+                  id="cv"
+                  required
+                />
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Date of Join</label>
+                <input
+                  class="input"
+                  type="date"
+                  name="doj"
+                  id="doj"
+                  required
+                />
+              </div>
+              <input
+                class="btn btn-primary mt-4"
+                id="otp-btn"
+                type="submit"
+                value="Submit"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  <!-- Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Employee</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="login-form" id="logform">
+                <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">MEC ID</label>
+                <input
+                  class="input"
+                  type="number"
+                  name="editmecid"
+                  id="editmecid"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Employee ID</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="editempid"
+                  id="editempid"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Name</label>
+                <input
+                  class="input"
+                  type="text"
+                  name="editnamename"
+                  id="editnamename"
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Phone</label>
+                <input
+                  class="input"
+                  type="tel"
+                  name="editphoneemp"
+                  id="editphoneemp"
+                  pattern="[0-9]{10}"
+                  title="Please enter a valid 10-digit phone number."
+                  required
+                />
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Email</label>
+                <input
+                  class="input"
+                  type="email"
+                  name="editemailemp"
+                  id="editemailemp"
+                  required
+                />
+              </div>
+                <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Department</label>
+                <select name="editdept" id="editdept" class="input">
+                  <option value="IT">IT</option>
+                  <option value="HR">HR</option>
+                </select>
+              </div>
+              <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Job</label>
+                <select name="editjob" id="editjob" class="input">
+                  <option value="Software Developer">Software Developer</option>
+                  <option value="HR">HR</option>
+                </select>
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">CV (pdf file only)</label>
+                <input
+                  class="input form-control"
+                  type="file"
+                  accept=".pdf"
+                  name="editcv"
+                  id="editcv"
+                  required
+                />
+              </div>
+               <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Date of Join</label>
+                <input
+                  class="input"
+                  type="date"
+                  name="editdoj"
+                  id="editdoj"
+                  required
+                />
+              </div>
+              <input
+                class="btn btn-primary mt-4"
+                id="otp-btn"
+                type="submit"
+                value="Submit"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="searchModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Search</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+             <form id="searchform" class="searchform-modal">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search...."
+          />
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/icons/fontawesome-free-6.6.0-web/js/all.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myTable").DataTable();
+      });
+    </script>
+  </body>
+</html>

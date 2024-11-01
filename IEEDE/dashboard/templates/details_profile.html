@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Educational Profile || IEEDE</title>
+    <title>Profile Details || IEEDE</title>
     <link rel="stylesheet" href="assets/css/citizen_landing.css" />
     <link
       rel="stylesheet"
@@ -13,36 +13,43 @@
       rel="stylesheet"
       href="assets/icons/line-awesome/css/line-awesome.min.css"
     />
+    <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
     <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <script src="assets/js/jquery.dataTables.min.js"></script>
   </head>
-  <body>
-    <section class="sidebar" id="sidebar">
-      <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
-      <img src="assets/img/IEEDE_logo_blue.png" alt="logo" id="logo" />
-      <a href="citizen_landing.html" class="side-a side-a-top" title="Dashboard"
+  <body class="bg-primary-subtle">
+      <section class="sidebar bg-danger" id="sidebar" style="background-color: #00bf63!important;">
+         <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
+      <img src="assets/img/IEEDE_logo_green.png" alt="logo" id="logo" style="border-bottom: 3px solid #198754!important;" />
+      <a href="employer_landing.html" class="side-a side-a-top" title="Dashboard"
         ><i class="fa-solid fa-gauge"></i
         ><span class="aspan">&nbsp;Dashboard</span></a
       >
-      <a href="citizen_personal_profile.html" class="side-a" title="Personal Profile"
-        ><i class="fa-solid fa-user"></i
-        ><span class="aspan">&nbsp;Personal&nbsp;Profile</span></a
+      <a
+        href="employer_employee_manage.html"
+        class="side-a"
+        title="Employees"
+        ><i class="fa-solid fa-user-tie"></i
+        ><span class="aspan">&nbsp;Employees</span></a
       >
-      <a href="citizen_education_profile.html" class="side-a" title="Educational Profile"
-        ><i class="fa-solid fa-user-graduate"></i
-        ><span class="aspan">&nbsp;Educational&nbsp;Profile</span></a
+      <a
+        href="employer_applications_manage.html"
+        class="side-a"
+        title="Applications"
+        ><i class="fa-solid fa-newspaper"></i><span class="aspan">&nbsp;Applications</span></a
       >
-      <a href="ctizen_skillset.html" class="side-a"
-        ><i class="fa-solid fa-bar-chart"></i
-        ><span class="aspan">&nbsp;Skillset</span></a
+      <a href="employer_vacany_manage.html" class="side-a" title="Jobs"
+        ><i class="fa-solid fa-user-plus"></i>
+        <span class="aspan">Vacancies</span></a
       >
-      <a href="#" class="side-a" title="Log Out"
+      <a href="#" class="side-a position-absolute" title="Log Out" style="bottom: 20px;width: 85%;"
         ><i class="fa-solid fa-right-from-bracket"></i
         ><span class="aspan">&nbsp;Log&nbsp;Out</span></a
       >
     </section>
-    <section class="main-body bg-primary-subtle">
-      <nav id="navbar">
+    <section class="main-body">
+      <nav id="navbar" class="bg-success">
         <i class="las la-bars" id="barswitch"></i>
         <form id="searchform">
           <input
@@ -51,18 +58,68 @@
             id="search"
             placeholder="Search...."
           />
-          <button type="submit">
+          <button type="submit" class="ins-search">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
         </form>
-        <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
+          <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
       </nav>
       <div class="body-main">
-        <div class="profile-body align-items-center flex-column">
+        <div class="profile-body flex-wrap">
+          <div class="pbl pbredu shadow-sm bg-white">
+            <div class="pblu">
+              <img src="assets/img/dp.png" alt="logo" />
+              <h2>AYAN MISHRA</h2>
+            </div>
+          </div>
           <div class="pbr pbredu shadow-sm bg-white">
             <h2 class="mb-4">
-              <i class="las la-user-graduate"></i>&nbsp;Post Graduate
+              <i class="las la-user"></i>&nbsp;Personal Profile
             </h2>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>Name:</th>
+                  <td>Ayan Mishra</td>
+                </tr>
+                <tr>
+                  <th>MEC ID:</th>
+                  <td>3248628469</td>
+                </tr>
+                <tr>
+                  <th>Personal Email:</th>
+                  <td>ayanmisra@gmail.com</td>
+                </tr>
+                <tr>
+                  <th>Phone Number:</th>
+                  <td>9883441243</td>
+                </tr>
+                <tr>
+                  <th>Father's Name:</th>
+                  <td>Parimal Misra</td>
+                </tr>
+                <tr>
+                  <th>Father's Contact:</th>
+                  <td>9186802396</td>
+                </tr>
+                <tr>
+                  <th>Current Address:</th>
+                  <td>Barbaria, Barasat, N24P, West Bengal, India, 700126</td>
+                </tr>
+                <tr>
+                  <th>Permanent Address:</th>
+                  <td>
+                    Basudebpur, Egra, East Medinipur, West Bengal, India, 721452
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <h2 class="mb-4 mt-5">
+              <i class="las la-user-graduate"></i>&nbsp;Educational
+            </h2>
+             <h5 class="mb-4 mt-4 text-secondary">
+              <i class="las la-user-graduate"></i>&nbsp;Post Graduate
+            </h5>
             <table class="table">
               <tbody>
                 <tr>
@@ -122,12 +179,9 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="pbr pbredu shadow-sm bg-white">
-
-             <h2 class="mb-4">
+            <h5 class="mb-4 mt-5 text-secondary">
               <i class="las la-user-graduate"></i>&nbsp;Graduate
-            </h2>
+            </h5>
             <table class="table mb-5">
               <tbody>
                 <tr>
@@ -189,13 +243,9 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-
-          <div class="pbr pbredu shadow-sm bg-white">
-
-            <h2 class="mb-4">
+            <h5 class="mb-4 text-secondary">
               <i class="las la-user-graduate"></i>&nbsp;10th and 12th
-            </h2>
+            </h5>
             <table class="table">
               <tbody>
                 <tr>
@@ -232,12 +282,42 @@
                 </tr>
               </tbody>
             </table>
+             <h2 class="mb-4 mt-5">
+              <i class="fa-solid fa-bar-chart"></i
+        >&nbsp;Skills
+            </h2>
+            <div class="d-flex flex-wrap gap-2" style="width: 100%;">
+                <span class="bg-info bg-gradient p-1 px-3 rounded">Java</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">Python</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">HTML & CSS</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">Bootstrap</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">Javascript</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">C & C++</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">PHP</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">MySql</span>
+                <span class="bg-info bg-gradient p-1 px-3 rounded">Ms Office</span>
+            </div>
+            <h2 class="mb-4 mt-5">
+              <i class="las la-certificate"></i>&nbsp;Certificates
+            </h2>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Certificate Title</th>
+                        <th class="text-center">Certificate</th>
+                    </tr>
+                    <tr>
+                        <td>Introduction to Machine Learning</td>
+                        <td class="text-center"><a href="#" class="btn btn-info text-light"><i class="las la-download"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
           </div>
         </div>
       </div>
     </section>
 
-     <div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal fade" id="searchModal" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -269,5 +349,10 @@
     <script src="assets/icons/fontawesome-free-6.6.0-web/js/all.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/sidebar.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myTable").DataTable();
+      });
+    </script>
   </body>
 </html>
