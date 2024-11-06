@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Citizen Login || IEEDE</title>
-    <link rel="stylesheet" href="assets/css/citizen_login.css" />
-    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/citizen_login.css' %}">
+    <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
   </head>
   <body>
     <section class="sec1">
       <div class="login">
         <div class="cover-pic">
-          <img src="assets/img/IEEDE_logo_blue.png" alt="login-cover" />
+          <img src="{% static '/img/IEEDE_logo_blue.png' %}" alt="login-cover" />
         </div>
         <div class="login-form-body">
           <h3>Citizen Login</h3>
           <p id="log-txt">
             After clicking "Send OTP," a one-time password will be sent to your
-            registered mobile number for verification.
+            registered email id for verification.
           </p>
           <form class="login-form" id="logform">
             <div class="input-box" id="mecform">
@@ -40,6 +41,6 @@
     </section>
 
 
-    <script src="assets/js/login.js"></script>
+    <script src="{% static '/js/login.js' %}"></script>
   </body>
 </html>
