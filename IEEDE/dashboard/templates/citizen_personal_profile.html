@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Profile || IEEDE</title>
-    <link rel="stylesheet" href="static/css/citizen_landing.css" />
+    <link rel="stylesheet" href="{% static '/css/citizen_landing.css' %}" />
     <link
       rel="stylesheet"
-      href="static/icons/fontawesome-free-6.6.0-web/css/all.min.css"
+      href="{% static '/icons/fontawesome-free-6.6.0-web/css/all.min.css' %}"
     />
     <link
       rel="stylesheet"
-      href="static/icons/line-awesome/css/line-awesome.min.css"
+      href="{% static '/icons/line-awesome/css/line-awesome.min.css' %}"
     />
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css" />
-    <script src="static/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
+    <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
   </head>
   <body>
     <section class="sidebar" id="sidebar">
       <i class="fa-solid fa-xmark align-self-end fs-5 text-light mt-3 me-3" id="close-bar"></i>
-      <img src="static/img/IEEDE_logo_blue.png" alt="logo" id="logo" />
-      <a href="citizen_landing.html" class="side-a side-a-top" title="Dashboard"
+      <img src="{% static '/img/IEEDE_logo_blue.png' %}" alt="logo" id="logo" />
+      <a href="/" class="side-a side-a-top" title="Dashboard"
         ><i class="fa-solid fa-gauge"></i
         ><span class="aspan">&nbsp;Dashboard</span></a
       >
@@ -28,11 +29,11 @@
         ><i class="fa-solid fa-user"></i
         ><span class="aspan">&nbsp;Personal&nbsp;Profile</span></a
       >
-      <a href="citizen_education_profile.html" class="side-a" title="Educational Profile"
+      <a href="/citizen-education-profile" class="side-a" title="Educational Profile"
         ><i class="fa-solid fa-user-graduate"></i
         ><span class="aspan">&nbsp;Educational&nbsp;Profile</span></a
       >
-      <a href="ctizen_skillset.html" class="side-a"
+      <a href="/citizen-skillset" class="side-a"
         ><i class="fa-solid fa-bar-chart"></i
         ><span class="aspan">&nbsp;Skillset</span></a
       >
@@ -61,7 +62,7 @@
         <div class="profile-body pbpp">
           <div class="pbl shadow-sm bg-white">
             <div class="pblu">
-              <img src="static/img/dp.png" alt="logo" />
+              <img src="{% static '/img/dp.png' %}" alt="logo" />
               <h2>AYAN MISHRA</h2>
               <!-- Button trigger modal -->
             <button
@@ -328,8 +329,8 @@
       </div>
     </div>
 
-    <script src="static/icons/fontawesome-free-6.6.0-web/js/all.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/sidebar.js"></script>
+    <script src="{% static '/icons/fontawesome-free-6.6.0-web/js/all.min.js' %}"></script>
+    <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/sidebar.js' %}"></script>
   </body>
 </html>
