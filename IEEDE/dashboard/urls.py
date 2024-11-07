@@ -14,7 +14,10 @@ urlpatterns = [
     path('institution-login/',views.institution_login , name="institution_login"),
     path('institution/',views.institution , name="institution"),
     path('institution-staff/',views.institution_staff , name="institution_staff"),
-    ## employees
+    path('institution-student/',views.institution_student , name="institution_student"),
+    path('institution-course/',views.institution_course , name="institution_course"),
+    path('institution-result/',views.institution_result , name="institution_result"),
+    ## employes
     path('search-job/',views.search_job , name="search_job"),
     path('employer-login/',views.employer_login , name="employer_login"),
 ]

@@ -31,7 +31,16 @@ def institution(request):
 def institution_staff(request):
     return render(request, 'institution_staff_manage.html')
 
+def institution_student(request):
+    return render(request, 'institution_student_manage.html')
 
+def institution_course(request):
+    return render(request, 'institution_course_manage.html')
+
+def institution_result(request):
+    return render(request, 'institution_result_manage.html')
+
+## employes
 def employer_login(request):
     return render(request, 'employer_login.html')
 
