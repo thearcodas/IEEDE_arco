@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load  static  %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Find Jobs || IEEDE</title>
-    <link rel="stylesheet" href="static/css/job_list.css" />
+    <link rel="stylesheet" href="{% static '/css/job_list.css' %}" />
     <link
       rel="stylesheet"
-      href="static/icons/fontawesome-free-6.6.0-web/css/all.min.css"
+      href="{% static '/icons/fontawesome-free-6.6.0-web/css/all.min.css' %}"
     />
     <link
       rel="stylesheet"
-      href="static/icons/line-awesome/css/line-awesome.min.css"
+      href="{% static '/icons/line-awesome/css/line-awesome.min.css' %}"
     />
-    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css" />
-    <script src="static/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
+    <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
   </head>
   <body class="bg-primary-subtle">
     <header class="d-flex py-4 justify-content-between align-items-center">
-      <img src="static/img/IEEDE_logo_job.png" alt="logo" />
+      <img src="{% static '/img/IEEDE_logo_job.png' %}" alt="logo" />
       <div class="search-box rounded">
         <form class="d-flex align-items-center">
           <div class="input d-flex gap-1 align-items-center ps-2">
@@ -99,7 +100,7 @@
         <div class="row g-0">
           <div class="col-md-4 p-5">
             <img
-              src="static/img/institution_logo.png"
+              src="{% static '/img/institution_logo.png' %}"
               class="img-fluid rounded-start"
               alt="..."
             />
@@ -172,7 +173,7 @@
         <div class="row g-0">
           <div class="col-md-4 p-5">
             <img
-              src="static/img/institution_logo.png"
+              src="{% static '/img/institution_logo.png' %}"
               class="img-fluid rounded"
               alt="..."
             />
@@ -311,7 +312,7 @@
         <div class="row g-0">
           <div class="col-md-4 p-5">
             <img
-              src="static/img/institution_logo.png"
+              src="{% static '/img/institution_logo.png' %}"
               class="img-fluid rounded"
               alt="..."
             />
@@ -463,8 +464,8 @@
       </div>
     </div>
 
-    <script src="static/icons/fontawesome-free-6.6.0-web/js/all.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/js/sidebar.js"></script>
+    <script src="{% static '/icons/fontawesome-free-6.6.0-web/js/all.min.js' %}"></script>
+    <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/sidebar.js' %}"></script>
   </body>
 </html>

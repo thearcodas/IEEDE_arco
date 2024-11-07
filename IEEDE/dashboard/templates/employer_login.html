@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Employer Login || IEEDE</title>
-    <link rel="stylesheet" href="assets/css/institution_login.css" />
-    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/institution_login.css' %}" />
+    <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
   </head>
   <body>
     <section class="sec1">
       <div class="login">
         <div class="cover-pic emp-cover-pic">
-          <img src="assets/img/IEEDE_logo_green.png" alt="login-cover" />
+          <img src="{% static '/img/IEEDE_logo_green.png' %}" alt="login-cover" />
         </div>
         <div class="login-form-body emp-log-form">
           <h3>Employer Login</h3>
@@ -26,7 +27,7 @@
               <label for="mec">Enter Password</label>
               <input class="input" type="password" name="epsw" id="epsw" />
               <div style="display: flex;justify-content: space-between;width: 100%;"><span id="epswerror">Invalid Password</span>
-              <a id="forgot-pass" href="forgot_pass.html" target="_blank">Forgot Password</a></div>
+              <a id="forgot-pass" href="/forgot-password" target="_blank">Forgot Password</a></div>
             </div>
             <input class="btn" id="emp-btn" type="submit" value="Log in" />
           </form>
@@ -35,6 +36,6 @@
     </section>
 
 
-    <script src="assets/js/login.js"></script>
+    <script src="{% static '/js/login.js' %}"></script>
   </body>
 </html>

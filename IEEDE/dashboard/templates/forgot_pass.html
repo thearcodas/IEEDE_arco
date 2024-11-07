@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+  {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forget Password || IEEDE</title>
-    <link rel="stylesheet" href="assets/css/forgot-pass.css">
-    <script src="assets/js/code.jquery.com_jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/forgot-pass.css' %}">
+    <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
 </head>
 <body>
     <section class="sec1">
         <div class="body">
             <h3>Forgot Password ?</h3>
-            <p id="for-txt">Please provide your registered phone number to receive an OTP for verification. It will arrive via SMS shortly.</p>
+            <p id="for-txt">Please provide your registered email id to receive an OTP for verification. It will arrive via SMS shortly.</p>
              <form class="login-form" id="mobform">
             <div class="input-box" id="mecform">
-              <label for="ph">Enter registered phone number</label>
+              <label for="ph">Enter registered email id</label>
               <input class="input" type="number" name="ph" id="ph" />
-              <span id="pherror">Phone number not found</span>
+              <span id="pherror">Email id not found</span>
             </div>
             <input class="btn" id="otp-btn" type="submit" value="Send OTP" />
           </form>
@@ -44,6 +45,6 @@
         </div>
     </section>
 
-    <script src="assets/js/login.js"></script>
+    <script src="{% static '/js/login.js' %}"></script>
 </body>
 </html>
