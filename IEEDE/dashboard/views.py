@@ -5,6 +5,7 @@ from .models import *
 from .mails import *
 from .utility import *
 from django.contrib.auth.models import User
+from django.utils import timezone
 # Create your views here.
 
 def forgot_password(request):
@@ -17,12 +18,18 @@ def citizen_login(request):
         if Citizen.objects.filter(MEC_no=mec_id).exists(): 
             citizen = Citizen.objects.filter(MEC_no=mec_id)
             user = User.objects.get(id=citizen)
-            otp = otp_generate() ## generate the otp
-            OTP_mail(otp,user.email) ## send the mail to the user email
+            auto_otp = otp_generate() ## generate the otp
+            otp= OTP.objects.create(
+                user=user,
+                otp=auto_otp,
+                otp_created_at=timezone.now()
+            )
+            otp.save()
+            # OTP_mail(otp,user.email) ## send the mail to the user email
             ## mec_id verification
     return render(request, 'citizen_login.html')
 
-# @login_required
+@login_required
 def home(request):
     return render(request, 'citizen_landing.html')
 
@@ -41,9 +48,10 @@ def institution_login(request):
         lic = request.POST["lic"]
         psw = request.POST["psw"]
         if User.objects.filter(username=lic).exists():
-            user = authenticate(request,username=lic,password=psw)
-            if user is not None:
-                    login(request,user)  ## institution login
+            institute = authenticate(request,username=lic,password=psw)
+            if institute is not None:
+                    login(request,institute)  ## institution login
+                    request.session['institute_name'] = institute
                     return redirect("/institution")
             else:
                 return redirect("/institution-login")
@@ -51,15 +59,26 @@ def institution_login(request):
 
 @login_required
 def institution_logout(request):
-    logout(request)
+    logout(request) ## institution logout
     return redirect("/institution-login")
+
 @login_required
 def institution(request):
+    # institute_name = request.session.get['institute_name']
+    # institute = EducationProfile.objects.filter(inst=institute_name)
     return render(request, 'institution_landing.html')
 
 def institution_staff(request):
+    if request.method == "POST":
+        addname = request.POST["addname"]
+        addphone = request.POST["addphone"]
+        addemail = request.POST["addemail"]
+        dept = request.POST["dept"]
+        adddesig = request.POST["adddesig"]
+        addaoi = request.POST["addaoi"]
     return render(request, 'institution_staff_manage.html')
 
+# @login_required
 def institution_student(request):
     if request.method == "POST":
         addmecid = request.POST['addmecid']
@@ -93,16 +112,33 @@ def institution_student(request):
 
     return render(request, 'institution_student_manage.html')
 
+@login_required
 def institution_course(request):
+    if request.method == "POST":
+        coursecode = request.POST["coursecode"]
+        coursename = request.POST["coursename"]
+        duration = request.POST["duration"]
+        totalsem = request.POST["totalsem"]
+        department = request.POST["department"]
+        if not Course.objects.filter(course_id=coursecode).exists():
+            course = Course.objects.create(
+                course_id=coursecode,
+                course_name=coursename,
+                duration=duration,
+                department=department,
+                totalsem=totalsem,
+                type="deg",
+                medium="offline")
+            course.save()
     return render(request, 'institution_course_manage.html')
 
 def institution_result(request):
     return render(request, 'institution_result_manage.html')
 
-## employes
-def employer_login(request):
-    return render(request, 'employer_login.html')
+# ## employes
+# def employer_login(request):
+#     return render(request, 'employer_login.html')
 
 
-def search_job(request):
-    return render(request, 'search_jobs.html')
+# def search_job(request):
+#     return render(request, 'search_jobs.html')

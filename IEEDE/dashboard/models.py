@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils import timezone
 class SkillSet(models.Model):
     skill_id = models.CharField(max_length=10, primary_key=True)
     skill_name = models.CharField(max_length=20)
@@ -30,6 +30,16 @@ class Citizen(models.Model):
     
     def __str__(self):
         return self.name
+
+class OTP(models.Model):
+    user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6, blank=True, null=True)
+    otp_created_at = models.DateTimeField(blank=True, null=True)
+
+    def is_otp_valid(self, otp):
+        time_diff = timezone.now() - self.otp_created_at
+        return self.otp == otp and time_diff.total_seconds() < 300  # 5 minutes validity
+    
 
 class Employer(models.Model):
     EIC_no = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
@@ -65,10 +75,12 @@ class Course(models.Model):
     institution = models.ManyToManyField(Institution, related_name="institutions_available")
     skills = models.ManyToManyField(SkillSet, related_name="skills_offered")
     duration = models.IntegerField(null=True)
+    totalsem = models.IntegerField(null=True)
+    department = models.CharField(max_length=40)
     TYPE_CHOICES = (("deg", "Degree"), ("cert", "Certificates"))
     MEDIUM_CHOICES = (("online", "Online"), ("offline", "Offline"))
-    type = models.CharField(max_length=4, choices=TYPE_CHOICES, default="cert")
-    medium = models.CharField(max_length=7, choices=MEDIUM_CHOICES, default="online")
+    type = models.CharField(max_length=4, choices=TYPE_CHOICES, default="deg")
+    medium = models.CharField(max_length=7, choices=MEDIUM_CHOICES, default="offline")
 
 class EducationProfile(models.Model):
     edp_id = models.CharField(max_length=10, primary_key=True)
@@ -77,7 +89,6 @@ class EducationProfile(models.Model):
     student = models.OneToOneField(Citizen, on_delete=models.CASCADE)
     roll = models.CharField(max_length=20)
     registration_no = models.CharField(max_length=30 , unique=True)
-    department = models.CharField(max_length=30)
     qualifications = models.CharField(max_length=20,null=True)
     registration_year = models.DateField(blank=True,null=True)
     passing_year = models.DateField(blank=True, null=True)
