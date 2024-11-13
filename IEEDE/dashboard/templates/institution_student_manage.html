@@ -59,7 +59,7 @@
         <span class="aspan">Results</span></a
       >
       <a
-        href="#"
+        href="/institution-logout"
         class="side-a position-absolute side-a-log"
         title="Log Out"
         style="bottom: 20px; width: 85%"
@@ -235,68 +235,30 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="login-form" id="logform">
+            <form class="login-form" id="logform" method="POST">
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">MEC ID</label>
-                <input
-                  class="input"
-                  type="number"
-                  name="addmecid"
-                  id="addmecid"
-                  required
-                />
+                <input class="input" type="number" name="addmecid" id="addmecid" required/>
               </div>
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Name</label>
-                <input
-                  class="input"
-                  type="text"
-                  name="addnamestu"
-                  id="addnamestu"
-                  required
-                />
+                <input class="input" type="text" name="addnamestu" id="addnamestu" required />
               </div>
                <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Roll</label>
-                <input
-                  class="input"
-                  type="text"
-                  name="addrollstu"
-                  id="addrollstu"
-                  required
-                />
+                <input class="input" type="text" name="addrollstu" id="addrollstu" required />
               </div>
                <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Registration No.</label>
-                <input
-                  class="input"
-                  type="text"
-                  name="addregstu"
-                  id="addregstu"
-                  required
-                />
+                <input class="input" type="text" name="addregstu" id="addregstu" required />
               </div>
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Phone</label>
-                <input
-                  class="input"
-                  type="tel"
-                  name="addphonestu"
-                  id="addphonestu"
-                  pattern="[0-9]{10}"
-                  title="Please enter a valid 10-digit phone number."
-                  required
-                />
+                <input class="input" type="tel" name="addphonestu" id="addphonestu" pattern="[0-9]{10}" title="Please enter a valid 10-digit phone number." required />
               </div>
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Email</label>
-                <input
-                  class="input"
-                  type="email"
-                  name="addemailstu"
-                  id="addemailstu"
-                  required
-                />
+                <input class="input" type="email" name="addemailstu" id="addemailstu" required />
               </div>
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Department</label>
@@ -317,23 +279,11 @@
               </div>
                <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Starting date</label>
-                <input
-                  class="input"
-                  type="month"
-                  name="syear"
-                  id="syear"
-                  required
-                />
+                <input class="input" type="month" name="syear" id="syear" required />
               </div>
                <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Ending Date</label>
-                <input
-                  class="input"
-                  type="month"
-                  name="eyear"
-                  id="eyear"
-                  required
-                />
+                <input class="input" type="month" name="eyear" id="eyear" required />
               </div>
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Status</label>

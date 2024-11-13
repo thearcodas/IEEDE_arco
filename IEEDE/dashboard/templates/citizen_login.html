@@ -20,7 +20,8 @@
             After clicking "Send OTP," a one-time password will be sent to your
             registered email id for verification.
           </p>
-          <form class="login-form" id="logform">
+          <form class="login-form" id="logform" method="POST">
+            {% csrf_token %}
             <div class="input-box" id="mecform">
               <label for="mec">Enter MEC ID</label>
               <input class="input" type="number" name="mec" id="mec" />

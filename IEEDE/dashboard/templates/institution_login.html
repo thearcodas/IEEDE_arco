@@ -17,10 +17,11 @@
         <div class="login-form-body">
           <h3>Institution Login</h3>
           <p>Enter your License no and password for successful login if you forgot your password then click on forget password.</p>
-          <form class="login-form" id="inslogform">
+          <form class="login-form" id="inslogform" method="POST">
+            {% csrf_token %}
             <div class="input-box" id="licform">
               <label for="lic">Enter License No.</label>
-              <input class="input" type="number" name="lic" id="lic" />
+              <input class="input" type="text" name="lic" id="lic" />
               <span id="licerror">Invalid License No.</span>
             </div>
              <div class="input-box" id="licform">

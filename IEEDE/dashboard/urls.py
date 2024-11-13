@@ -12,6 +12,7 @@ urlpatterns = [
     path('citizen-education-profile/',views.citizen_education_profile , name="citizen_education_profile"),
     ## institutions
     path('institution-login/',views.institution_login , name="institution_login"),
+    path('institution-logout/',views.institution_logout , name="institution_logout"),
     path('institution/',views.institution , name="institution"),
     path('institution-staff/',views.institution_staff , name="institution_staff"),
     path('institution-student/',views.institution_student , name="institution_student"),

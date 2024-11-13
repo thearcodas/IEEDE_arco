@@ -71,6 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'IEEDE.wsgi.application'
 
+LOGIN_URL = 'citizen-login/'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

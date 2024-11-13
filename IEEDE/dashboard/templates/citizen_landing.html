@@ -78,19 +78,20 @@
         </div>
         <div href="" class="card c-right">
           <div class="c-r-body">
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
             <table class="table">
               <tbody>
                 <tr>
                   <th scope="row">Name:</th>
-                  <td>Mark Martin</td>
+                  <td>{{user.name}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Email:</th>
-                  <td>Mark Martin</td>
+                  <td>{{user.email}}</td>
                 </tr>
                 <tr>
                   <th scope="row">MEC ID:</th>
-                  <td>53753495734</td>
+                  <td>{{user.MEC_no}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Current Occupation:</th>
@@ -98,7 +99,7 @@
                 </tr>
                 <tr>
                   <th scope="row">Current Address:</th>
-                  <td>sduhdsu, ausudg, uosudsgd, 700001</td>
+                  <td>{{user.address}}</td>
                 </tr>
               </tbody>
             </table>
