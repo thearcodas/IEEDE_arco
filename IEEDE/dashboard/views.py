@@ -62,7 +62,7 @@ def institution_logout(request):
     logout(request) ## institution logout
     return redirect("/institution-login")
 
-@login_required
+# @login_required
 def institution(request):
     # institute_name = request.session.get['institute_name']
     # institute = EducationProfile.objects.filter(inst=institute_name)
