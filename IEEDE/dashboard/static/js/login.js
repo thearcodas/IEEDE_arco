@@ -13,7 +13,7 @@ $(document).ready(function () {
         else {
           $('#logform').css("display", "none");
           logtxt.html(
-            "An OTP will be sent to your registered mobile number shortly. Please do not refresh the page. Thank you!"
+            "An OTP will be sent to your registered email shortly. Please do not refresh the page. Thank you!"
           );
           $('#logotpform').css("display","flex");
           $('#logotpform').submit(function () { 
