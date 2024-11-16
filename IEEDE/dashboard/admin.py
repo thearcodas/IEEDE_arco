@@ -6,6 +6,8 @@ admin.site.register(Citizen)
 class CitizenAdmin(admin.ModelAdmin):
     list_display = ('MEC_no', 'name', 'phone', 'Guardian',  'Address', 'skills')
 
+admin.site.register(OTP)
+
 admin.site.register(Institution)
 class InstitutionAdmin(admin.ModelAdmin):
     list_display = ('IIC_no', 'name', 'TYPE_CHOICES', 'type', 'location', 'Acc_status')

@@ -117,14 +117,15 @@
                   <th>Action</th>
                 </tr>
               </thead>
+              {% for course in courses %}
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>MCA</td>
-                  <td>Master's of Computer Application</td>
-                  <td>2</td>
-                  <td>4</td>
-                  <td>Computer Science</td>
+                  <td>{{course.course_id}}</td>
+                  <td>{{course.course_name}}</td>
+                  <td>{{course.duration}}</td>
+                  <td>{{course.totalsem}}</td>
+                  <td>{{course.department}}</td>
                   <td>
                     <button
                       type="button"
@@ -139,6 +140,7 @@
                   </td>
                 </tr>
               </tbody>
+              {% endfor%}
             </table>
           </div>
         </div>
