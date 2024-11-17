@@ -6,6 +6,7 @@ urlpatterns = [
     path('',views.home , name="home"),
     ## citizens
     path('citizen-login/',views.citizen_login , name="citizen_login"),
+    path('citizen-logout/',views.citizen_logout , name="citizen_logout"),
     path('citizen-login/send-otp/',views.send_otp , name="send_otp"),
     path('citizen-login/verify-otp/',views.verify_otp , name="verify_otp"),
     path('forgot-password/',views.forgot_password , name="forgot_password"),

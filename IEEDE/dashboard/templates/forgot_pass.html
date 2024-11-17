@@ -13,15 +13,17 @@
         <div class="body">
             <h3>Forgot Password ?</h3>
             <p id="for-txt">Please provide your registered email id to receive an OTP for verification. It will arrive via SMS shortly.</p>
-             <form class="login-form" id="mobform">
+             <form class="login-form" id="mobform" method="POST">
+              {% csrf_token %}
             <div class="input-box" id="mecform">
               <label for="ph">Enter registered email id</label>
-              <input class="input" type="number" name="ph" id="ph" />
+              <input class="input" type="text" name="ph" id="ph" />
               <span id="pherror">Email id not found</span>
             </div>
             <input class="btn" id="otp-btn" type="submit" value="Send OTP" />
           </form>
-          <form class="login-form" id="otpforform">
+          <form class="login-form" id="otpforform" method="POST">
+            {% csrf_token %}
             <div class="input-box" id="mecform">
               <label for="fotp">Enter OTP</label>
               <input class="input" type="number" name="fotp" id="fotp" />
@@ -29,7 +31,8 @@
             </div>
             <input class="btn" id="otp-btn" type="submit" value="Verify OTP" />
           </form>
-          <form class="login-form" id="pswform">
+          <form class="login-form" id="pswform" method="POST">
+            {% csrf_token %}
             <div class="input-box" id="mecform">
               <label for="fotp">Enter New Password</label>
               <input class="input" type="password" name="npsw" id="npsw" />

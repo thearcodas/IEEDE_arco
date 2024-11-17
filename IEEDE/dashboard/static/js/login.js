@@ -20,6 +20,7 @@ $(document).ready(function () {
 
       try {
         const response = await fetch("send-otp/", {
+          
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -28,10 +29,11 @@ $(document).ready(function () {
           body: JSON.stringify({ mec: mecInput.value.trim() }),
         });
 
+        const data = await response.json();
+        
         if (response.ok) {
-          const mecId = data.mec; // Assuming the server returns the MEC ID in the response
-          document.querySelector("#otp-form").innerHTML += `
-              <input type="hidden" name="mec_id" id="mec_id" value="${mecId}" />`;
+          const mecId = data.mec_id;
+          document.querySelector("#mec_id").value=mecId;
           logText.textContent =
             "An OTP has been sent to your registered email. Please do not refresh the page. Thank you!";
           logText.style.color = "green";
@@ -68,16 +70,17 @@ $(document).ready(function () {
       }
 
       try {
+        let request_body = { otp: otpInput.value.trim(), 
+          mec: mecIDInput.value.trim()
+        };
+        console.log(request_body);
         const response = await fetch("verify-otp/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             "X-CSRFToken": "{{ csrf_token }}",
           },
-          body: JSON.stringify(
-            { otp: otpInput.value.trim(), 
-              mec: mecIDInput.value.trim()
-            }),
+          body: JSON.stringify(request_body),
         });
 
         if (response.ok) {
@@ -88,7 +91,7 @@ $(document).ready(function () {
           otpError.style.visibility = "visible";
         }
       } catch (error) {
-        console.error("Error:", error);
+        alert(error);
         otpError.textContent = "Network error. Please try again.";
         otpError.style.visibility = "visible";
       }

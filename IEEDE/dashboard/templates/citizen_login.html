@@ -32,6 +32,8 @@
            <form class="login-form" id="logotpform">
             <div class="input-box otp" id="otpfrom">
               <label for="otp">Enter OTP</label>
+              <input type="hidden" id="mec_id" name="mec_id" value="mec_id" />
+              <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
               <input class="input" type="password" name="otp" id="otp" />
               <label for="otp" id="otperror">Invalid OTP</label>
             </div>

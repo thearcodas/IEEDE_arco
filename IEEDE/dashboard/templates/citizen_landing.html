@@ -44,7 +44,7 @@
         <span class="aspan">&nbsp;Skillset</span></a
       >
       <a
-        href="#"
+        href="/citizen-logout"
         class="side-a position-absolute"
         title="Log Out"
         style="bottom: 20px; width: 85%"
@@ -78,7 +78,6 @@
         </div>
         <div href="" class="card c-right">
           <div class="c-r-body">
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
             <table class="table">
               <tbody>
                 <tr>
@@ -91,7 +90,7 @@
                 </tr>
                 <tr>
                   <th scope="row">MEC ID:</th>
-                  <td>{{user.MEC_no}}</td>
+                  <td>{{user.username}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Current Occupation:</th>

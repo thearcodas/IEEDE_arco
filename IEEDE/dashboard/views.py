@@ -17,8 +17,12 @@ def forgot_password(request):
 
 ## citizens
 def citizen_login(request):
-    
     return render(request, 'citizen_login.html')
+
+@login_required
+def citizen_logout(request):
+    logout(request)
+    return redirect("/citizen-login")
 
 @csrf_exempt
 @require_POST
@@ -33,8 +37,8 @@ def send_otp(request):  ## mec id validation and otp send
                 otp = OTP(user=user,otp=otp_gen,otp_created_at=timezone.now())
                 otp.save()
                 OTP_mail(otp_gen,user.email) ## send otp to the user mail
-                request.session['mec_id']=mec
-                return JsonResponse({"message": "OTP sent successfully!"})
+                print(mec)
+                return JsonResponse({"mec_id": mec})
             else:
                 return JsonResponse({"error": "MEC ID is required."},status=400)
         except json.JSONDecodeError:
@@ -45,23 +49,23 @@ def send_otp(request):  ## mec id validation and otp send
 @require_POST
 def verify_otp(request):
     if request.method =="POST":
-        mec_id = request.session.get["mec_id"]
-        print(mec_id)
         try:
             data = json.loads(request.body)
             otp = data.get("otp")
+            mec_id = data.get("mec")
+            print(mec_id)
             user = User.objects.get(username=mec_id)
             otp_ver = OTP.objects.get(user_id=user)
             if otp == otp_ver.otp:
                 login(request,user)
-                # Respond to the client
+                print(otp)
                 return JsonResponse({"message": "OTP sent successfully!"})
             else:
                 return JsonResponse({"error": "MEC ID is required."}, status=400)
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON data."}, status=400)
 
-    # Handle non-POST requests
+    #Handle non-POST requests
     return JsonResponse({"error": "Invalid request method."}, status=405)
 
 def home(request): ## citizen dashboard page
@@ -98,7 +102,6 @@ def institution_logout(request):
     logout(request) ## institution logout
     return redirect("/institution-login")
 
-# @login_required
 def institution(request):
     # institute_name = request.session.get['institute_name']
     # institute = EducationProfile.objects.filter(inst=institute_name)
