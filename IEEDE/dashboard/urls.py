@@ -6,6 +6,7 @@ urlpatterns = [
     path('',views.home , name="home"),
     ## citizens
     path('citizen-login/',views.citizen_login , name="citizen_login"),
+    path('citizen-registration/',views.citizen_registration , name="citizen_registration"),
     path('citizen-logout/',views.citizen_logout , name="citizen_logout"),
     path('citizen-login/send-otp/',views.send_otp , name="send_otp"),
     path('citizen-login/verify-otp/',views.verify_otp , name="verify_otp"),
@@ -15,6 +16,7 @@ urlpatterns = [
     path('citizen-education-profile/',views.citizen_education_profile , name="citizen_education_profile"),
     ## institutions
     path('institution-login/',views.institution_login , name="institution_login"),
+    path('institution-registration/',views.institution_registration , name="institution_registration"),
     path('institution-logout/',views.institution_logout , name="institution_logout"),
     path('institution/',views.institution , name="institution"),
     path('institution-student/',views.institution_student , name="institution_student"),

@@ -16,11 +16,14 @@ def forgot_password(request):
     return render(request, 'forgot_pass.html')
 
 ## citizens
-def citizen_login(request):
+def citizen_login(request): ## citizen login
     return render(request, 'citizen_login.html')
 
+def citizen_registration(request):
+    return render(request,"citizen_reg.html")
+
 @login_required
-def citizen_logout(request):
+def citizen_logout(request): ## citizen logout
     logout(request)
     return redirect("/citizen-login")
 
@@ -74,12 +77,15 @@ def home(request): ## citizen dashboard page
     else:
         return render(request, 'citizen_landing.html')
 
+@login_required
 def citizen_skillset(request):
     return render(request, 'citizen_skillset.html')
 
+@login_required
 def citizen_education_profile(request):
     return render(request, 'citizen_education_profile.html')
 
+@login_required
 def personal_profile(request):
     return render(request, 'citizen_personal_profile.html')
 
@@ -102,9 +108,10 @@ def institution_logout(request):
     logout(request) ## institution logout
     return redirect("/institution-login")
 
+def institution_registration(request):
+    return render(request,"institution_reg.html") 
+
 def institution(request):
-    # institute_name = request.session.get['institute_name']
-    # institute = EducationProfile.objects.filter(inst=institute_name)
     if not request.user.is_authenticated:
         return redirect("/institution-login")
     else: 
@@ -113,8 +120,9 @@ def institution(request):
 
 # @login_required
 def institution_student(request):
-    # int_no = request.session.get["institute_name"]
     if request.method == "POST":
+        request_user = request.user
+        print(request_user)
         addmecid = request.POST['addmecid']
         addnamestu = request.POST['addnamestu']
         addrollstu = request.POST['addrollstu']
@@ -127,21 +135,23 @@ def institution_student(request):
         eyear = request.POST['eyear']
         status = request.POST['status']
         edp_id =edp_id_generator()
-        if  User.objects.filter(username=addmecid).exists() and not EducationProfile.objects.filter(edp_id=edp_id).exists():
+        if   not EducationProfile.objects.filter(edp_id=edp_id).exists():
             user = User.objects.get(username=addmecid)
+            print(user)
             citizen = Citizen.objects.get(MEC_no=user)
-            course_id = course_id_generator()
-            edp_id = edp_id_generator()
-            course = Course.objects.create()
-            education_profile = EducationProfile.objects.create(
-                edp_id=edp_id,
-                roll=addrollstu,
-                Inst=int_no,
-                department=dept,
-                registration_no=addregstu,
-                registration_year=syear,
-                passing_year=eyear,
-                status=status)
+            print(citizen)
+            # course_id = course_id_generator() ## auto genetated Educational Course ID
+            # edp_id = edp_id_generator()  ## auto genetated Educational Profile ID
+            # course = Course.objects.create()
+            # education_profile = EducationProfile.objects.create(
+            #     edp_id=edp_id,
+            #     roll=addrollstu,
+            #     Inst=request_user.username,
+            #     department=dept,
+            #     registration_no=addregstu,
+            #     registration_year=syear,
+            #     passing_year=eyear,
+            #     status=status)
 
     return render(request, 'institution_student_manage.html')
 

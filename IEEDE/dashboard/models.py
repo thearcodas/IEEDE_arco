@@ -10,15 +10,20 @@ class SkillSet(models.Model):
 
 class Institution(models.Model):
     IIC_no = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=50)
     TYPE_CHOICES = (
         ("school", "School"),
         ("college", "College"),
         ("university", "University"),
     )
     type = models.CharField(max_length=10, choices=TYPE_CHOICES, default="school")
-    location = models.CharField(max_length=15)
+    location = models.CharField(max_length=120)
     Acc_status = models.CharField(max_length=5)
+    logo = models.ImageField(upload_to="institute/logo")
+
+    def __str__(self):
+        return self.name
+
 
 class Citizen(models.Model):
     MEC_no = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -27,6 +32,18 @@ class Citizen(models.Model):
     Guardian = models.ManyToManyField('self', related_name='guardians', blank=True)
     Address = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(SkillSet, related_name='skillset', blank=True)
+    profile_img = models.ImageField(upload_to="citizen/profile")
+    ten_grade = models.FileField(upload_to="citizen/grade")
+    twelve_grade = models.FileField(upload_to="citizen/grade")
+    sem1 = models.FileField(upload_to="citizen/sem")
+    sem2 = models.FileField(upload_to="citizen/sem")
+    sem3 = models.FileField(upload_to="citizen/sem")
+    sem4 = models.FileField(upload_to="citizen/sem")
+    sem5 = models.FileField(upload_to="citizen/sem")
+    sem6 = models.FileField(upload_to="citizen/sem")
+    sem7 = models.FileField(upload_to="citizen/sem")
+    sem8 = models.FileField(upload_to="citizen/sem")
+
     
     def __str__(self):
         return self.name
@@ -39,6 +56,10 @@ class OTP(models.Model):
     def is_otp_valid(self, otp):
         time_diff = timezone.now() - self.otp_created_at
         return self.otp == otp and time_diff.total_seconds() < 300  # 5 minutes validity
+    
+    def __str__(self):
+        return self.user.username
+
     
 
 class Employer(models.Model):
@@ -81,6 +102,9 @@ class Course(models.Model):
     MEDIUM_CHOICES = (("online", "Online"), ("offline", "Offline"))
     type = models.CharField(max_length=4, choices=TYPE_CHOICES, default="deg")
     medium = models.CharField(max_length=7, choices=MEDIUM_CHOICES, default="offline")
+
+    def __str__(self):
+        return self.course_name
 
 class EducationProfile(models.Model):
     edp_id = models.CharField(max_length=10, primary_key=True)
