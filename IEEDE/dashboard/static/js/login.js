@@ -147,12 +147,11 @@ $(document).ready(function () {
    });
 
    $("#mobform").submit(function () { 
-    if ($("#ph").val().length < 10) {
-      $("#ph").css("borderColor", "#9B111E");
-      $("#pherror").css("visibility", "visible");
-      return false;
-    }
-    else{
+    // if ($("#ph") < 10) {
+    //   $("#ph").css("borderColor", "#9B111E");
+    //   $("#pherror").css("visibility", "visible");
+    //   return false;
+    // }
         $("#mobform").css("display", "none");
         $("#for-txt").html(
           "An OTP has been sent to your phone. Enter it here and do not refresh the page."
@@ -186,7 +185,6 @@ $(document).ready(function () {
         }
         });
         return false;
-    }
     
    });
 });

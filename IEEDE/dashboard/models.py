@@ -33,16 +33,7 @@ class Citizen(models.Model):
     Address = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(SkillSet, related_name='skillset', blank=True)
     profile_img = models.ImageField(upload_to="citizen/profile")
-    ten_grade = models.FileField(upload_to="citizen/grade")
-    twelve_grade = models.FileField(upload_to="citizen/grade")
-    sem1 = models.FileField(upload_to="citizen/sem")
-    sem2 = models.FileField(upload_to="citizen/sem")
-    sem3 = models.FileField(upload_to="citizen/sem")
-    sem4 = models.FileField(upload_to="citizen/sem")
-    sem5 = models.FileField(upload_to="citizen/sem")
-    sem6 = models.FileField(upload_to="citizen/sem")
-    sem7 = models.FileField(upload_to="citizen/sem")
-    sem8 = models.FileField(upload_to="citizen/sem")
+    
 
     
     def __str__(self):
@@ -119,6 +110,16 @@ class EducationProfile(models.Model):
     STATUS_CHOICES = (("ongoing", "Ongoing"), ("completed", "Completed"))
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default="ongoing")
     cgpa = models.DecimalField(max_digits=4, decimal_places=2, null=True)
+    ten_grade = models.FileField(upload_to="citizen/grade")
+    twelve_grade = models.FileField(upload_to="citizen/grade")
+    sem1 = models.FileField(upload_to="citizen/sem")
+    sem2 = models.FileField(upload_to="citizen/sem")
+    sem3 = models.FileField(upload_to="citizen/sem")
+    sem4 = models.FileField(upload_to="citizen/sem")
+    sem5 = models.FileField(upload_to="citizen/sem")
+    sem6 = models.FileField(upload_to="citizen/sem")
+    sem7 = models.FileField(upload_to="citizen/sem")
+    sem8 = models.FileField(upload_to="citizen/sem")
 
 class EmploymentProfile(models.Model):
     emp_id = models.CharField(max_length=10, primary_key=True)

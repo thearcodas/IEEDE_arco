@@ -64,9 +64,9 @@
       <div class="body-main">
         <div class="card c-left gap-3 bg-transparent">
           <div class="profile-photo institution-logo">
-            <img src="{% static '/img/institution_logo.png' %}" alt="people" />
+            <img src="../static/media/{{ institute.logo }}" alt="people" />
           </div>
-          <h2>ABCD University</h2>
+          <h2>{{user.first_name}}</h2>
           <small class="fs-6 text-center">ABCDpur, ABCD Nagar, <br>ABCD Dist, ABCD State <br> India, 700001</small>
         </div>
         <div class="card c-right border-start bg-transparent">

@@ -13,19 +13,45 @@ import json
 # Create your views here.
 
 def forgot_password(request):
+    if request.method == "POST":
+        email = request.POST['ph']
+        if User.objects.filter(email=email).exists():
+            otp_gen = otp_generate() # Generate and send the OTP 
+            user = User.objects.get(email=email)
+            otp = OTP(user=user,otp=otp_gen,otp_created_at=timezone.now())
+            otp.save()
+            OTP_mail(otp_gen,user.email) ## send otp to the user mail
+            print(email)
     return render(request, 'forgot_pass.html')
 
 ## citizens
 def citizen_login(request): ## citizen login
-    return render(request, 'citizen_login.html')
+    return render(request, 'citizen_login.html') #ok
 
 def citizen_registration(request):
+    # if request.method =="POST":
+    #     mec = request.POST['mec']
+    #     name = request.POST['name']
+    #     email = request.POST['email']
+    #     phone = request.POST['phone']
+    #     address = request.POST['address']
+    #     if not User.objects.filter(username=mec).exists():
+    #         first_name, last_name = name.split()
+    #         user = User(username=mec,email=email,first_name=first_name,last_name=last_name)
+    #         user.save()
+    #         citizen =Citizen(user=user.username,name=name,phone=phone,address=address)
+    #         citizen.save()
+    #         otp_gen = otp_generate() # Generate and send the OTP 
+    #         otp = OTP.objects.create(user=user,otp=otp_gen,otp_created_at=timezone.now())
+    #         otp.save()
+    #         OTP_mail(otp_gen,user.email) ## send otp to the user mail
+            
     return render(request,"citizen_reg.html")
 
 @login_required
 def citizen_logout(request): ## citizen logout
     logout(request)
-    return redirect("/citizen-login")
+    return redirect("/citizen-login") #ok
 
 @csrf_exempt
 @require_POST
@@ -46,7 +72,7 @@ def send_otp(request):  ## mec id validation and otp send
                 return JsonResponse({"error": "MEC ID is required."},status=400)
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON data."}, status=400)
-    return JsonResponse({"error": "Invalid request method."}, status=405)
+    return JsonResponse({"error": "Invalid request method."}, status=405) #ok
 
 @csrf_exempt
 @require_POST
@@ -69,13 +95,13 @@ def verify_otp(request):
             return JsonResponse({"error": "Invalid JSON data."}, status=400)
 
     #Handle non-POST requests
-    return JsonResponse({"error": "Invalid request method."}, status=405)
+    return JsonResponse({"error": "Invalid request method."}, status=405) #ok
 
 def home(request): ## citizen dashboard page
     if not request.user.is_authenticated:
         return redirect("/citizen-login")
     else:
-        return render(request, 'citizen_landing.html')
+        return render(request, 'citizen_landing.html') #ok
 
 @login_required
 def citizen_skillset(request):
@@ -83,6 +109,7 @@ def citizen_skillset(request):
 
 @login_required
 def citizen_education_profile(request):
+    user = request.user.id
     return render(request, 'citizen_education_profile.html')
 
 @login_required
@@ -98,15 +125,15 @@ def institution_login(request):
             institute = authenticate(request,username=lic,password=psw)
             if institute is not None:
                     login(request,institute)  ## institution login
-            return redirect("/institution",{"institute":institute})
+            return redirect("/institution")
         else:
             return redirect("/institution-login")
-    return render(request, 'institution_login.html')
+    return render(request, 'institution_login.html') #ok
 
 @login_required
 def institution_logout(request):
     logout(request) ## institution logout
-    return redirect("/institution-login")
+    return redirect("/institution-login") #ok
 
 def institution_registration(request):
     return render(request,"institution_reg.html") 
@@ -115,8 +142,10 @@ def institution(request):
     if not request.user.is_authenticated:
         return redirect("/institution-login")
     else: 
-
-        return render(request, 'institution_landing.html')
+        institution = request.user.id
+        user = User.objects.get(id=institution)
+        institute = Institution.objects.get(IIC_no=institution)
+        return render(request, 'institution_landing.html',{"user":user ,"institute":institute}) #ok
 
 # @login_required
 def institution_student(request):
