@@ -66,7 +66,6 @@ def send_otp(request):  ## mec id validation and otp send
                 otp = OTP(user=user,otp=otp_gen,otp_created_at=timezone.now())
                 otp.save()
                 OTP_mail(otp_gen,user.email) ## send otp to the user mail
-                print(mec)
                 return JsonResponse({"mec_id": mec})
             else:
                 return JsonResponse({"error": "MEC ID is required."},status=400)
@@ -82,12 +81,10 @@ def verify_otp(request):
             data = json.loads(request.body)
             otp = data.get("otp")
             mec_id = data.get("mec")
-            print(mec_id)
             user = User.objects.get(username=mec_id)
             otp_ver = OTP.objects.get(user_id=user)
             if otp == otp_ver.otp:
                 login(request,user)
-                print(otp)
                 return JsonResponse({"message": "OTP sent successfully!"})
             else:
                 return JsonResponse({"error": "MEC ID is required."}, status=400)
@@ -101,7 +98,9 @@ def home(request): ## citizen dashboard page
     if not request.user.is_authenticated:
         return redirect("/citizen-login")
     else:
-        return render(request, 'citizen_landing.html') #ok
+        user = request.user
+        citizen = Citizen.objects.get(MEC_no=user.id)
+        return render(request, 'citizen_landing.html',{"user": user,"citizen":citizen}) #ok
 
 @login_required
 def citizen_skillset(request):
@@ -109,12 +108,15 @@ def citizen_skillset(request):
 
 @login_required
 def citizen_education_profile(request):
-    user = request.user.id
-    return render(request, 'citizen_education_profile.html')
+    user = request.user
+    citizen = Citizen.objects.get(MEC_no=user.id)
+    return render(request, 'citizen_education_profile.html',{"user": user,"citizen":citizen})
 
 @login_required
 def personal_profile(request):
-    return render(request, 'citizen_personal_profile.html')
+    user = request.user
+    citizen = Citizen.objects.get(MEC_no=user.id)
+    return render(request, 'citizen_personal_profile.html',{"user": user,"citizen":citizen})
 
 ## institutions
 def institution_login(request): 
@@ -145,13 +147,16 @@ def institution(request):
         institution = request.user.id
         user = User.objects.get(id=institution)
         institute = Institution.objects.get(IIC_no=institution)
-        return render(request, 'institution_landing.html',{"user":user ,"institute":institute}) #ok
+        students = EducationProfile.objects.filter(Inst=institute)
+        course = Course.objects.filter(institution=institution)
+        courses = course.count()
+        student = students.count()
+        return render(request, 'institution_landing.html',{"user":user ,"institute":institute,"courses":courses,"student":student}) #ok
 
-# @login_required
+@login_required
 def institution_student(request):
+    request_user = request.user.id
     if request.method == "POST":
-        request_user = request.user
-        print(request_user)
         addmecid = request.POST['addmecid']
         addnamestu = request.POST['addnamestu']
         addrollstu = request.POST['addrollstu']
@@ -164,28 +169,33 @@ def institution_student(request):
         eyear = request.POST['eyear']
         status = request.POST['status']
         edp_id =edp_id_generator()
-        if   not EducationProfile.objects.filter(edp_id=edp_id).exists():
-            user = User.objects.get(username=addmecid)
-            print(user)
-            citizen = Citizen.objects.get(MEC_no=user)
+        if  User.objects.filter(id=request_user).exists() and not EducationProfile.objects.filter(edp_id=edp_id).exists():
+            users = User.objects.get(username=addmecid)
+            citizen = Citizen.objects.get(MEC_no=users.id)
+            courses = Course.objects.get(course_name=course,institution=request_user)
             print(citizen)
-            # course_id = course_id_generator() ## auto genetated Educational Course ID
-            # edp_id = edp_id_generator()  ## auto genetated Educational Profile ID
-            # course = Course.objects.create()
-            # education_profile = EducationProfile.objects.create(
-            #     edp_id=edp_id,
-            #     roll=addrollstu,
-            #     Inst=request_user.username,
-            #     department=dept,
-            #     registration_no=addregstu,
-            #     registration_year=syear,
-            #     passing_year=eyear,
-            #     status=status)
-
-    return render(request, 'institution_student_manage.html')
+            print(citizen.MEC_no)
+            institute = Institution.objects.get(IIC_no=request_user)
+            edp_id = edp_id_generator()  ## auto genetated Educational Profile ID
+            education_profile = EducationProfile(
+                edp_id=edp_id,
+                Inst=institute,
+                roll=addrollstu,
+                student=citizen,
+                course=courses,
+                registration_no=addregstu,
+                registration_year=syear,
+                passing_year=eyear,
+                status=status)
+            education_profile.save()
+    institute = Institution.objects.get(IIC_no=request_user)
+    students = EducationProfile.objects.filter(Inst=institute)
+    print(students)
+    return render(request, 'institution_student_manage.html',{"students":students})
 
 @login_required
 def institution_course(request):
+    request_user = request.user
     if request.method == "POST":
         coursecode = request.POST["coursecode"]
         coursename = request.POST["coursename"]
@@ -201,9 +211,12 @@ def institution_course(request):
                 totalsem=totalsem,
                 type="deg",
                 medium="offline")
+            course.institution.set(request_user)
             course.save()
-    courses = Course.objects.all()
-    return render(request, 'institution_course_manage.html' , {'courses':courses})
+
+    institute = Institution.objects.get(IIC_no=request_user.id)
+    courses = Course.objects.filter(institution=institute)
+    return render(request, 'institution_course_manage.html' , {'courses':courses}) #ok
 
 def institution_result(request):
     return render(request, 'institution_result_manage.html')

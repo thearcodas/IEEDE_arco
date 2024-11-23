@@ -7,6 +7,9 @@ class SkillSet(models.Model):
     CHOICES = (("beg", "Beginner"), ("int", "Intermediate"), ("adv", "Advanced"))
     Level = models.CharField(max_length=3, choices=CHOICES, default="beg")
     Feature = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.skill_name} ({self.Level})"
 
 class Institution(models.Model):
     IIC_no = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
@@ -29,7 +32,7 @@ class Citizen(models.Model):
     MEC_no = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=20)
     phone = models.BigIntegerField()
-    Guardian = models.ManyToManyField('self', related_name='guardians', blank=True)
+    # Guardian = models.ManyToManyField('self', related_name='guardians', blank=True)
     Address = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(SkillSet, related_name='skillset', blank=True)
     profile_img = models.ImageField(upload_to="citizen/profile")
@@ -120,6 +123,9 @@ class EducationProfile(models.Model):
     sem6 = models.FileField(upload_to="citizen/sem")
     sem7 = models.FileField(upload_to="citizen/sem")
     sem8 = models.FileField(upload_to="citizen/sem")
+
+    def __str__(self):
+        return f"{self.student.name} ({self.registration_no})"
 
 class EmploymentProfile(models.Model):
     emp_id = models.CharField(max_length=10, primary_key=True)

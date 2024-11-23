@@ -66,18 +66,18 @@
           <div class="profile-photo institution-logo">
             <img src="../static/media/{{ institute.logo }}" alt="people" />
           </div>
-          <h2>{{user.first_name}}</h2>
-          <small class="fs-6 text-center">ABCDpur, ABCD Nagar, <br>ABCD Dist, ABCD State <br> India, 700001</small>
+          <h2>{{institute.name}}</h2>
+          <small class="fs-6 text-center">{{institute.location}}</small>
         </div>
         <div class="card c-right border-start bg-transparent">
           <div class="c-r-body">
             <a href="/institution-student" class="cc btn btn-danger">
               <small>Total Students</small>
-              <h3>30</h3>
+              <h3>{{student}}</h3>
             </a>
             <a href="/institution-course" class="cc btn btn-danger">
                <small>Total Courses</small>
-                <h3>30</h3>
+                <h3>{{courses}}</h3>
             </a>
           </div>
         </div>

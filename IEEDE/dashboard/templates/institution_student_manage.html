@@ -126,17 +126,19 @@
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>7238472847</td>
-                  <td>Ayan Mishra</td>
-                  <td>PG/02/MCA/2023/008</td>
-                  <td>AU/2023/0010196</td>
-                  <td>9999999999</td>
-                  <td>ayanmisra2003@gmail.com</td>
-                  <td>MCA</td>
-                  <td>2023 - 2025</td>
-                  <td>Computer Science</td>
-                  <td>Pursing..</td>
-                  <td>
+                  
+                  {% for student in students %}
+                  <td>{{student}}</td>
+                  <td>{{student}}</td>
+                  <td>{{student.roll}}</td>
+                  <td>{{student.registration_no}}</td>
+                  <td>{{student}}</td>
+                  <td>{{student}}</td>
+                  <td>{{student.course}}</td>
+                  <td>{{student}}</td>
+                  <td>{{student}}</td>
+                  <td>{{student}}</td> 
+                    <td>
                     <button
                       type="button"
                       data-bs-toggle="modal"
@@ -150,6 +152,7 @@
                   </td>
                 </tr>
               </tbody>
+              {% endfor %}
             </table>
             </div>
           </div>
@@ -235,7 +238,7 @@
               {% csrf_token %}
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">MEC ID</label>
-                <input class="input" type="number" name="addmecid" id="addmecid" required/>
+                <input class="input" type="text" name="addmecid" id="addmecid" required/>
               </div>
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Name</label>
@@ -276,11 +279,11 @@
               </div>
                <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Starting date</label>
-                <input class="input" type="month" name="syear" id="syear" required />
+                <input class="input" type="date" name="syear" id="syear" required />
               </div>
                <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Ending Date</label>
-                <input class="input" type="month" name="eyear" id="eyear" required />
+                <input class="input" type="date" name="eyear" id="eyear" required />
               </div>
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Status</label>

@@ -62,8 +62,8 @@
         <div class="profile-body pbpp">
           <div class="pbl shadow-sm bg-white">
             <div class="pblu">
-              <img src="{% static '/img/dp.png' %}" alt="logo" />
-              <h2>AYAN MISHRA</h2>
+              <img src="../static/media/{{ citizen.profile_img }}" alt="logo" />
+              <h2>{{citizen.name}}</h2>
               <!-- Button trigger modal -->
             <button
               type="button"
@@ -84,19 +84,19 @@
               <tbody>
                 <tr>
                   <th>Name:</th>
-                  <td>Ayan Mishra</td>
+                  <td>{{citizen.name}}</td>
                 </tr>
                 <tr>
                   <th>MEC ID:</th>
-                  <td>3248628469</td>
+                  <td>{{user.username}}</td>
                 </tr>
                 <tr>
                   <th>Personal Email:</th>
-                  <td>ayanmisra@gmail.com</td>
+                  <td>{{user.email}}</td>
                 </tr>
                 <tr>
                   <th>Phone Number:</th>
-                  <td>9883441243</td>
+                  <td>{{citizen.phone}}</td>
                 </tr>
                 <tr>
                   <th>Father's Name:</th>
@@ -121,7 +121,7 @@
                 <tr>
                   <th>Permanent Address:</th>
                   <td>
-                    Basudebpur, Egra, East Medinipur, West Bengal, India, 721452
+                    {{citizen.Address}}
                   </td>
                 </tr>
               </tbody>
