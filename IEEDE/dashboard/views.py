@@ -132,6 +132,7 @@ def institution_login(request):
             return redirect("/institution-login")
     return render(request, 'institution_login.html') #ok
 
+@csrf_exempt
 @login_required
 def institution_logout(request):
     logout(request) ## institution logout
@@ -151,7 +152,11 @@ def institution(request):
         course = Course.objects.filter(institution=institution)
         courses = course.count()
         student = students.count()
-        return render(request, 'institution_landing.html',{"user":user ,"institute":institute,"courses":courses,"student":student}) #ok
+        return render(request, 'institution_landing.html',
+                      {"user":user ,
+                       "institute":institute,
+                       "courses":courses,
+                       "student":student}) #ok
 
 @login_required
 def institution_student(request):
@@ -173,8 +178,6 @@ def institution_student(request):
             users = User.objects.get(username=addmecid)
             citizen = Citizen.objects.get(MEC_no=users.id)
             courses = Course.objects.get(course_name=course,institution=request_user)
-            print(citizen)
-            print(citizen.MEC_no)
             institute = Institution.objects.get(IIC_no=request_user)
             edp_id = edp_id_generator()  ## auto genetated Educational Profile ID
             education_profile = EducationProfile(
@@ -190,9 +193,23 @@ def institution_student(request):
             education_profile.save()
     institute = Institution.objects.get(IIC_no=request_user)
     students = EducationProfile.objects.filter(Inst=institute)
-    print(students)
     return render(request, 'institution_student_manage.html',{"students":students})
 
+
+@login_required
+def reject_Student(request):
+        try:
+            data = json.loads(request.body)
+            student = data.get("userId")
+            print(student)
+            stu = EducationProfile.objects.get(edp_id=student)
+            stu.delete()
+            return redirect("/institution-student")
+        # else:
+        #         return JsonResponse({"error": "MEC ID is required."}, status=400)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "Invalid JSON data."}, status=400)
+    
 @login_required
 def institution_course(request):
     request_user = request.user

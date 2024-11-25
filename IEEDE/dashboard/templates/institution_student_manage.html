@@ -18,6 +18,32 @@
     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
     <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
     <script src="{% static '/js/jquery.dataTables.min.js' %}"></script>
+
+    // reject the user
+    <script>
+    async function rejectUser(userId) {
+        try {
+            const response = await fetch('rejectStudent/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'  // Add CSRF token for security
+                },
+                body: `user_id=${userId}`
+            });
+
+            const data = await response.json();
+            if (data.status === 'success') {
+                alert(data.message);
+                document.getElementById(`user-row-${userId}`).style.display = 'none'; // Remove the rejected user row
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+</script>
   </head>
   <body class="bg-primary-subtle">
     <section
@@ -110,7 +136,7 @@
               <thead>
                 <tr>
                   <th>SL</th>
-                  <th>MEC ID</th>
+                  <th>EDP ID</th>
                   <th>Name</th>
                   <th>Roll</th>
                   <th>Reg no.</th>
@@ -128,7 +154,7 @@
                   <td>1</td>
                   
                   {% for student in students %}
-                  <td>{{student}}</td>
+                  <td>{{student.edp_id}}</td>
                   <td>{{student}}</td>
                   <td>{{student.roll}}</td>
                   <td>{{student.registration_no}}</td>
@@ -136,17 +162,13 @@
                   <td>{{student}}</td>
                   <td>{{student.course}}</td>
                   <td>{{student}}</td>
-                  <td>{{student}}</td>
+                  <td>{{student.status}}</td>
                   <td>{{student}}</td> 
                     <td>
-                    <button
-                      type="button"
-                      data-bs-toggle="modal"
-                      data-bs-target="#editModal"
-                      class="btn btn-primary"
-                    >
-                      <i class="fa-solid fa-pen-to-square"></i></button
-                    >&nbsp;<button class="btn btn-danger">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-primary">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>&nbsp;
+                    <button onclick="rejectUser({{ student.edp_id }})" class="btn btn-danger">
                       <i class="fa-solid fa-trash-can"></i>
                     </button>
                   </td>
