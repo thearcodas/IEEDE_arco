@@ -219,6 +219,7 @@ def institution_course(request):
         duration = request.POST["duration"]
         totalsem = request.POST["totalsem"]
         department = request.POST["department"]
+        medium = request.POST['method']
         if not Course.objects.filter(course_id=coursecode).exists():
             course = Course.objects.create(
                 course_id=coursecode,
@@ -227,9 +228,9 @@ def institution_course(request):
                 department=department,
                 totalsem=totalsem,
                 type="deg",
-                medium="offline")
-            course.institution.set(request_user)
+                medium=medium)
             course.save()
+            course.institution.set(request_user)
 
     institute = Institution.objects.get(IIC_no=request_user.id)
     courses = Course.objects.filter(institution=institute)

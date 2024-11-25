@@ -132,7 +132,7 @@
                     <button
                       type="button"
                       class="btn btn-primary"
-                      onclick="editModalShow({{course.course_id}})"
+                      onclick="editModalShow('{{course.course_id}}','{{course.course_name}}','{{course.department}}',{{course.totalsem}},{{course.duration}},'{{course.medium}}')"
                     >
                       <i class="fa-solid fa-pen-to-square"></i></button
                     >&nbsp;<button class="btn btn-danger">
@@ -258,7 +258,7 @@
                 <label for="permanent-address">Method</label>
                 <select name="method" id="method" class="input">
                   <option value="offline">Offline</option>
-                  <option value="Online">Online</option>
+                  <option value="online">Online</option>
                 </select>
               </div>
                <div class="input-box" id="permanent-address-box">
@@ -340,6 +340,13 @@
                 />
               </div>
                <div class="input-box" id="permanent-address-box">
+                <label for="permanent-address">Method</label>
+                <select name="methodedit" id="methodedit" class="input">
+                  <option value="offline">Offline</option>
+                  <option value="online">Online</option>
+                </select>
+              </div>
+               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Duration (in years)</label>
                 <input
                   class="input"
@@ -414,10 +421,14 @@
     <script src="{% static '/icons/fontawesome-free-6.6.0-web/js/all.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/sidebar.js' %}"></script>
-    <script>function editModalShow(editcourse){
-      console.log(editcourse)
-          document.getElementById('coursecodeedit').value = editcourse.course_id;
-          document.getElementById('coursenameedit').value = editcourse.course_name;
+    <script>
+      function editModalShow(courseid,coursename,coursedept,coursetotalsem,coursedur,coursemethod){
+      $('#coursecodeedit').val(courseid);
+      $('#coursenameedit').val(coursename);
+      $('#departmentedit').val(coursedept);
+      $('#totalsemedit').val(coursetotalsem);
+      $('#durationedit').val(coursedur);
+      $('#methodedit').val(coursemethod);
           $('#editModal').modal('show');
       }
       
