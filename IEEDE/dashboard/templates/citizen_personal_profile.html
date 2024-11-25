@@ -99,27 +99,7 @@
                   <td>{{citizen.phone}}</td>
                 </tr>
                 <tr>
-                  <th>Father's Name:</th>
-                  <td>Parimal Misra</td>
-                </tr>
-                <tr>
-                  <th>Father's Contact:</th>
-                  <td>9186802396</td>
-                </tr>
-                <tr>
-                  <th>Aadhar Card Number:</th>
-                  <td>842389423345</td>
-                </tr>
-                <tr>
-                  <th>Pan Card Number:</th>
-                  <td>HDY346H</td>
-                </tr>
-                <tr>
-                  <th>Current Address:</th>
-                  <td>Barbaria, Barasat, N24P, West Bengal, India, 700126</td>
-                </tr>
-                <tr>
-                  <th>Permanent Address:</th>
+                  <th>Address:</th>
                   <td>
                     {{citizen.Address}}
                   </td>
@@ -130,8 +110,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal2"
+              onclick="editPersonalProfile('{{citizen.name}}','{{user.email}}','{{citizen.phone}}','{{citizen.Address}}')"
             >
               Edit Profile&nbsp;<i class="las la-edit"></i>
             </button>
@@ -189,7 +168,7 @@
     </section>
     <div
               class="modal fade modal2"
-              id="exampleModal2"
+              id="editModal"
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
@@ -242,48 +221,13 @@
                         />
                       </div>
 
-                      <div class="input-box" id="father-name-box">
-                        <label for="father-name">Father's Name</label>
-                        <input
-                          class="input"
-                          type="text"
-                          name="father-name"
-                          id="father-name"
-                          required
-                        />
-                      </div>
-
-                      <div class="input-box" id="father-contact-box">
-                        <label for="father-contact">Father's Contact</label>
-                        <input
-                          class="input"
-                          type="tel"
-                          name="father-contact"
-                          id="father-contact"
-                          pattern="[0-9]{10}"
-                          title="Please enter a valid 10-digit phone number."
-                          required
-                        />
-                      </div>
-
-                      <div class="input-box" id="current-address-box">
-                        <label for="current-address">Current Address</label>
-                        <input
-                          class="input"
-                          type="text"
-                          name="current-address"
-                          id="current-address"
-                          required
-                        />
-                      </div>
-
                       <div class="input-box" id="permanent-address-box">
-                        <label for="permanent-address">Permanent Address</label>
+                        <label for="permanent-address">Address</label>
                         <input
                           class="input"
                           type="text"
-                          name="permanent-address"
-                          id="permanent-address"
+                          name="address"
+                          id="address"
                           required
                         />
                       </div>
@@ -332,5 +276,14 @@
     <script src="{% static '/icons/fontawesome-free-6.6.0-web/js/all.min.js' %}"></script>
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/sidebar.js' %}"></script>
+    <script>
+      function editPersonalProfile(name,email,phone,address){
+          $('#name').val(name);
+          $('#email').val(email);
+          $('#phone').val(phone);
+          $('#address').val(address);
+          $('#editModal').modal('show');
+      }
+    </script>
   </body>
 </html>

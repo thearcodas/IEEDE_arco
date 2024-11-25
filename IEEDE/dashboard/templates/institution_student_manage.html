@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
   {% load static %}
   <head>
@@ -18,8 +17,6 @@
     <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}" />
     <script src="{% static '/js/code.jquery.com_jquery-3.7.1.min.js' %}"></script>
     <script src="{% static '/js/jquery.dataTables.min.js' %}"></script>
-
-    // reject the user
     <script>
     async function rejectUser(userId) {
         try {
@@ -105,7 +102,7 @@
         </form>
         <i class="fa-solid fa-magnifying-glass mobi-search text-light fs-5 position-absolute" style="right: 30px;" data-bs-toggle="modal" data-bs-target="#searchModal"></i>
       </nav>
-      <div class="body-main">
+      <div class="body-main" style="margin-left:0">
         <div class="profile-body align-items-center flex-column">
           <div class="pbr shadow-sm bg-white" style="width: 96%;">
             <div class="d-flex gap-2 mb-4">
@@ -132,7 +129,7 @@
               Info
             </h2>
             <div class="pb-2" style="width: 100%;overflow-x: scroll;">
-                <table id="myTable" style="width: 130%;">
+                <table id="myTable" style="width: 170%;">
               <thead>
                 <tr>
                   <th>SL</th>
@@ -151,9 +148,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
                   
                   {% for student in students %}
+                  <td>1</td>
                   <td>{{student.edp_id}}</td>
                   <td>{{student}}</td>
                   <td>{{student.roll}}</td>
@@ -165,10 +162,10 @@
                   <td>{{student.status}}</td>
                   <td>{{student}}</td> 
                     <td>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-primary">
+                    <button type="button" onclick="editModalShow('{{student.edp_id}}','{{student.roll}}','{{student.registration_no}}','{{student.course}}','{{student.status}}')" class="btn btn-primary">
                       <i class="fa-solid fa-pen-to-square"></i>
                     </button>&nbsp;
-                    <button onclick="rejectUser({{ student.edp_id }})" class="btn btn-danger">
+                    <button onclick="rejectUser('{{ student.edp_id }}')" class="btn btn-danger">
                       <i class="fa-solid fa-trash-can"></i>
                     </button>
                   </td>
@@ -310,9 +307,9 @@
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Status</label>
                 <select name="status" id="status" class="input">
-                  <option value="Computer Science">Pursuing</option>
-                  <option value="Computer Science">Passout</option>
-                  <option value="Computer Science">Dropout</option>
+                  <option value="Pursuing">Pursuing</option>
+                  <option value="Passout">Passout</option>
+                  <option value="Dropout">Dropout</option>
                 </select>
               </div>
               <input
@@ -357,9 +354,9 @@
                 <label for="permanent-address">MEC ID</label>
                 <input
                   class="input"
-                  type="number"
-                  name="mecid"
-                  id="mecid"
+                  type="text"
+                  name="editmecid"
+                  id="editmecid"
                   required
                 />
               </div>
@@ -455,9 +452,9 @@
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Status</label>
                 <select name="editstatus" id="editstatus" class="input">
-                  <option value="Computer Science">Pursuing</option>
-                  <option value="Computer Science">Passout</option>
-                  <option value="Computer Science">Dropout</option>
+                  <option value="Pursuing">Pursuing</option>
+                  <option value="Passout">Passout</option>
+                  <option value="Dropout">Dropout</option>
                 </select>
               </div>
               <input
@@ -505,6 +502,15 @@
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/sidebar.js' %}"></script>
     <script>
+      function editModalShow(mecid,studentroll,studentreg,studentcourse,studentstatus){
+        alert(studentstatus)
+      $('#editmecid').val(mecid);
+      $('#rollstu').val(studentroll);
+      $('#regstu').val(studentreg);
+      $('#editcourse').val(studentcourse);
+      $('#editstatus').val(studentstatus);
+          $('#editModal').modal('show');
+      }
       $(document).ready(function () {
         $("#myTable").DataTable();
       });
