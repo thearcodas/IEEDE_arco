@@ -141,7 +141,6 @@
                   <th>Email</th>
                   <th>Course</th>
                   <th>Duration</th>
-                  <th>Department</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -149,20 +148,19 @@
               <tbody>
                 <tr>
                   
-                  {% for student in students %}
-                  <td>1</td>
+                  {% for student,student_duration in student_data %}
+                  <td>{{ forloop.counter }}</td>
                   <td>{{student.edp_id}}</td>
-                  <td>{{student}}</td>
+                  <td>{{student.name}}</td>
                   <td>{{student.roll}}</td>
                   <td>{{student.registration_no}}</td>
-                  <td>{{student}}</td>
-                  <td>{{student}}</td>
+                  <td>{{student.phone}}</td>
+                  <td>{{student.email}}</td>
                   <td>{{student.course}}</td>
-                  <td>{{student}}</td>
-                  <td>{{student.status}}</td>
-                  <td>{{student}}</td> 
+                  <td>{{student_duration}}</td>
+                  <td>{{student.status}}</td> 
                     <td>
-                    <button type="button" onclick="editModalShow('{{student.edp_id}}','{{student.roll}}','{{student.registration_no}}','{{student.course}}','{{student.status}}')" class="btn btn-primary">
+                    <button type="button" onclick="editModalShow('{{student.edp_id}}','{{student.name}}','{{student.roll}}','{{student.registration_no}}','{{student.course}}','{{student.status}}')" class="btn btn-primary">
                       <i class="fa-solid fa-pen-to-square"></i>
                     </button>&nbsp;
                     <button onclick="rejectUser('{{ student.edp_id }}')" class="btn btn-danger">
@@ -349,7 +347,8 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="login-form" id="logform">
+            <form class="login-form" id="logform" Action="/student-update" method="POST">
+              {% csrf_token %}
                 <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">MEC ID</label>
                 <input

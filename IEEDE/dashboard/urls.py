@@ -20,7 +20,9 @@ urlpatterns = [
     path('institution-logout/',views.institution_logout , name="institution_logout"),
     path('institution/',views.institution , name="institution"),
     path('institution-student/',views.institution_student , name="institution_student"),
+    path('institution-student/student-update',views.student_update , name="student_update"),
     path('institution-student/rejectStudent',views.reject_Student , name="reject_Student"),
+    path('institution-course/course-update',views.course_update , name="course_update"),
     path('institution-course/',views.institution_course , name="institution_course"),
     path('institution-result/',views.institution_result , name="institution_result"),
     # ## employes

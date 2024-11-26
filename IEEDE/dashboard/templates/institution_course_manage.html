@@ -121,7 +121,7 @@
               {% for course in courses %}
               <tbody>
                 <tr>
-                  <td>1</td>
+                  <td>{{ forloop.counter }}</td>
                   <td>{{course.course_id}}</td>
                   <td>{{course.course_name}}</td>
                   <td>{{course.duration}}</td>
@@ -222,7 +222,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="login-form" id="logform" method="POST">
+            <form class="login-form"  id="logform" method="POST">
               {% csrf_token %}
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Course Code</label>

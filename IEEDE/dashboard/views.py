@@ -184,6 +184,10 @@ def institution_student(request):
                 edp_id=edp_id,
                 Inst=institute,
                 roll=addrollstu,
+                name = addnamestu,
+                email= addemailstu,
+                phone = addphonestu,
+                department = dept,
                 student=citizen,
                 course=courses,
                 registration_no=addregstu,
@@ -193,9 +197,17 @@ def institution_student(request):
             education_profile.save()
     institute = Institution.objects.get(IIC_no=request_user)
     students = EducationProfile.objects.filter(Inst=institute)
-    return render(request, 'institution_student_manage.html',{"students":students})
+    student_durations = []
+    for student in students:
+        student_durations.append(f'{student.registration_year.year}-{student.passing_year.year}')
+    student_data = zip(students, student_durations)
+    return render(request, 'institution_student_manage.html',{"student_data":student_data})
 
 
+def student_update(request):
+    # if request.method =="POST":
+
+    return redirect("/institution-student")
 @login_required
 def reject_Student(request):
         try:
@@ -227,15 +239,40 @@ def institution_course(request):
                 duration=duration,
                 department=department,
                 totalsem=totalsem,
-                type="deg",
                 medium=medium)
             course.save()
-            course.institution.set(request_user)
-
-    institute = Institution.objects.get(IIC_no=request_user.id)
+            institution = Institution.objects.get(IIC_no=request_user)
+            course.institution.add(institution) 
+            return redirect("/institution-course")
+    
+    institute = Institution.objects.get(IIC_no=request_user)
     courses = Course.objects.filter(institution=institute)
     return render(request, 'institution_course_manage.html' , {'courses':courses}) #ok
 
+@login_required
+def course_update(request):
+    request_user = request.user
+    if request.method == "POST":
+        coursecode = request.POST["coursecode"]
+        coursename = request.POST["coursename"]
+        duration = request.POST["duration"]
+        totalsem = request.POST["totalsem"]
+        department = request.POST["department"]
+        medium = request.POST['method']
+        if Course.objects.filter(course_id=coursecode).exists():
+            course = Course.objects.get(course_id=coursecode)
+            course.course_id=coursecode,
+            course.course_name=coursename,
+            course.duration=duration,
+            course.department=department,
+            course.totalsem=totalsem,
+            course.medium=medium
+            institution = Institution.objects.get(IIC_no=request_user)
+            course.institution.add(institution) 
+            return redirect("/institution-course")
+    # return redirect("/institution-course")
+
+@login_required
 def institution_result(request):
     return render(request, 'institution_result_manage.html')
 

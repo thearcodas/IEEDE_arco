@@ -92,22 +92,23 @@ class Course(models.Model):
     duration = models.IntegerField(null=True)
     totalsem = models.IntegerField(null=True)
     department = models.CharField(max_length=40)
-    TYPE_CHOICES = (("deg", "Degree"), ("cert", "Certificates"))
     MEDIUM_CHOICES = (("online", "Online"), ("offline", "Offline"))
-    type = models.CharField(max_length=4, choices=TYPE_CHOICES, default="deg")
     medium = models.CharField(max_length=7, choices=MEDIUM_CHOICES, default="offline")
 
     def __str__(self):
         return self.course_name
 
 class EducationProfile(models.Model):
-    edp_id = models.CharField(max_length=10, primary_key=True)
+    edp_id = models.CharField(max_length=30, primary_key=True)
     Inst = models.ForeignKey(Institution, on_delete=models.CASCADE)
     course = models.OneToOneField(Course, on_delete=models.CASCADE)
     student = models.OneToOneField(Citizen, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone = models.IntegerField()
     roll = models.CharField(max_length=20)
+    department = models.CharField(max_length=50)
     registration_no = models.CharField(max_length=30 , unique=True)
-    qualifications = models.CharField(max_length=20,null=True)
     registration_year = models.DateField(blank=True,null=True)
     passing_year = models.DateField(blank=True, null=True)
     STATUS_CHOICES = (("ongoing", "Ongoing"), ("completed", "Completed"))
