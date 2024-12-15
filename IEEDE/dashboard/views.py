@@ -96,7 +96,7 @@ def verify_otp(request):
 
 def home(request): ## citizen dashboard page
     if not request.user.is_authenticated:
-        return redirect("/citizen-login")
+        return render(request, "index.html")
     else:
         user = request.user
         citizen = Citizen.objects.get(MEC_no=user.id)
@@ -253,12 +253,12 @@ def institution_course(request):
 def course_update(request):
     request_user = request.user
     if request.method == "POST":
-        coursecode = request.POST["coursecode"]
-        coursename = request.POST["coursename"]
-        duration = request.POST["duration"]
-        totalsem = request.POST["totalsem"]
-        department = request.POST["department"]
-        medium = request.POST['method']
+        coursecode = request.POST["coursecodeedit"]
+        coursename = request.POST["coursenameedit"]
+        duration = request.POST["departmentedit"]
+        totalsem = request.POST["totalsemedit"]
+        department = request.POST["departmentedit"]
+        medium = request.POST['methodedit']
         if Course.objects.filter(course_id=coursecode).exists():
             course = Course.objects.get(course_id=coursecode)
             course.course_id=coursecode,
@@ -267,10 +267,11 @@ def course_update(request):
             course.department=department,
             course.totalsem=totalsem,
             course.medium=medium
+            course.save()
             institution = Institution.objects.get(IIC_no=request_user)
             course.institution.add(institution) 
             return redirect("/institution-course")
-    # return redirect("/institution-course")
+    return redirect("/institution-course")
 
 @login_required
 def institution_result(request):

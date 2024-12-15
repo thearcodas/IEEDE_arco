@@ -318,7 +318,8 @@
             ></button>
           </div>
           <div class="modal-body">
-            <form class="login-form" id="logform">
+            <form class="login-form" Action="/institution-course/course-update/" id="logform" method="POST">
+              {% csrf_token %}
               <div class="input-box" id="permanent-address-box">
                 <label for="permanent-address">Course Code</label>
                 <input
