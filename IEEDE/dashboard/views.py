@@ -94,13 +94,17 @@ def verify_otp(request):
     #Handle non-POST requests
     return JsonResponse({"error": "Invalid request method."}, status=405) #ok
 
-def home(request): ## citizen dashboard page
+def home(request): ## Home page
     if not request.user.is_authenticated:
         return render(request, "index.html")
-    else:
+    elif Citizen.objects.filter(MEC_no=request.user).exists():
         user = request.user
         citizen = Citizen.objects.get(MEC_no=user.id)
         return render(request, 'citizen_landing.html',{"user": user,"citizen":citizen}) #ok
+    else:
+        user = request.user
+        institution = Institution.objects.get(IIC_no=user.id)
+        return render(request, 'institution_landing.html',{"user": user,"institution":institution}) #ok
 
 @login_required
 def citizen_skillset(request):
@@ -255,17 +259,17 @@ def course_update(request):
     if request.method == "POST":
         coursecode = request.POST["coursecodeedit"]
         coursename = request.POST["coursenameedit"]
-        duration = request.POST["departmentedit"]
+        duration = int(request.POST["durationedit"])
         totalsem = request.POST["totalsemedit"]
         department = request.POST["departmentedit"]
         medium = request.POST['methodedit']
         if Course.objects.filter(course_id=coursecode).exists():
             course = Course.objects.get(course_id=coursecode)
-            course.course_id=coursecode,
-            course.course_name=coursename,
-            course.duration=duration,
-            course.department=department,
-            course.totalsem=totalsem,
+            course.course_id=coursecode
+            course.course_name=coursename
+            course.duration=duration
+            course.department=department
+            course.totalsem=totalsem
             course.medium=medium
             course.save()
             institution = Institution.objects.get(IIC_no=request_user)
@@ -273,6 +277,19 @@ def course_update(request):
             return redirect("/institution-course")
     return redirect("/institution-course")
 
+@login_required
+def course_delete(request):
+    request_user = request.user
+    if request.method == "POST":
+        course_id = request.POST.get("course_id")
+        print(course_id)
+            # stu = Course.objects.get(edp_id=student)
+            # stu.delete()
+            # return redirect("/institution-course")
+        # else:
+        #         return JsonResponse({"error": "MEC ID is required."}, status=400)
+    # except json.JSONDecodeError:
+    # return JsonResponse({"error": "Invalid JSON data."}, status=400)
 @login_required
 def institution_result(request):
     return render(request, 'institution_result_manage.html')

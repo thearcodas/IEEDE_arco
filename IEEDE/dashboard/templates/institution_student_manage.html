@@ -501,10 +501,12 @@
     <script src="{% static '/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/sidebar.js' %}"></script>
     <script>
-      function editModalShow(mecid,studentroll,studentreg,studentcourse,studentstatus){
+      function editModalShow(mecid,studentname,studentroll,studentreg,stuphone,studentcourse,studentstatus){
       $('#editmecid').val(mecid);
+      $('#namestu').val(studentname);
       $('#rollstu').val(studentroll);
       $('#regstu').val(studentreg);
+      $('#phonestu').val(studentphone);
       $('#editcourse').val(studentcourse);
       $('#editstatus').val(studentstatus);
           $('#editModal').modal('show');
